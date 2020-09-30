@@ -92,8 +92,7 @@ static int cmd_si(char *args) {
 	}
     // printf("test: the number is:%d",count_number);
 	// i don't know why, if number is big than 9, they don't excecute it...
-	cpu_exec(count_number);
-	printf("it doesn't work? mother fucker!");
+	cpu_exec((int)count_number);
 	return 0;
 }
 
