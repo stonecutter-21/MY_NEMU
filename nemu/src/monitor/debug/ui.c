@@ -40,6 +40,8 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args);
 
+static int cmd_info(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -49,7 +51,7 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "The program executes N instructions in a single step and then pauses. When N is not given, the default is 1", cmd_si},
-
+	{ "info", "'-r',print register state. '-w', print monitor point information", cmd_info},
 	/* TODO: Add more commands */
 
 };
@@ -89,10 +91,28 @@ static int cmd_si(char *args) {
 	else{
 		sscanf(arg,"%d",&count_number);
 	}
-	// i don't know why, if number is bigger than 9, it doesn't show anything...
+	// i don't know why, if number is bigger than 9, it does excecute, but doesn't show anything...
 	cpu_exec(count_number);
 	// printf("test: the number is:%d\n",count_number);
 	return 0;
+}
+
+static int cmd_info(char *args) {
+	char *arg = strtok(args, " ");
+	if (arg == NULL){
+		printf("too few arguments. type 'help' for more detiles" );
+	}
+	if (*arg == 'r'){
+		printf("eax: %x\n",cpu.eax);
+	    printf("ecx: %x\n",cpu.ecx);
+	    printf("edx: %x\n",cpu.edx);
+	    printf("ebx: %x\n",cpu.ebx);
+	    printf("esp: %x\n",cpu.esp);
+	    printf("ebp: %x\n",cpu.ebp);
+	    printf("esi: %x\n",cpu.esi);
+	    printf("edi: %x\n",cpu.edi);
+	}
+	return 0;	
 }
 
 void ui_mainloop() {
