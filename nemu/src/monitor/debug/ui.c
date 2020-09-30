@@ -141,7 +141,7 @@ static int cmd_scan_mem(char *args) {
 	uint32_t addr;
 	for(i = 0; i< N_temp; i++) {
 		addr = swaddr_read(EX_temp + i, 1);
-		printf("%x: %x\n",EX_temp,addr);
+		printf("%x: %x\n",EX_temp+i,addr);
 	}
 	return 0;
 }
