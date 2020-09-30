@@ -38,6 +38,8 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -46,6 +48,7 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
+	{ "si", "The program executes N instructions in a single step and then pauses. When N is not given, the default is 1", cmd_si},
 
 	/* TODO: Add more commands */
 
@@ -73,6 +76,21 @@ static int cmd_help(char *args) {
 		}
 		printf("Unknown command '%s'\n", arg);
 	}
+	return 0;
+}
+
+// my code: cmd_si[N]
+static int cmd_si(char *args) {
+	char *arg = strtok(NULL, " "); // the first one ,it should be si
+	char *arg_end1 = arg + strlen(arg); // it it the "[N]"
+	int count_number;
+	if (arg_end1 == NULL) {
+		count_number = 1;
+	}
+	else{
+		count_number = atoi(arg_end1);
+	}
+	cpu_exec(count_number);
 	return 0;
 }
 
