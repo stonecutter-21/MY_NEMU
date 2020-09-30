@@ -100,18 +100,18 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
 	char *arg = strtok(NULL, " ");
 	if (arg == NULL){
-		printf("too few arguments. type 'help' for more detiles" );
+		printf("too few arguments. type 'help' for more detiles\n" );
 		return 0;
 	}
 	if (*arg == 'r'){
-		printf("eax: %x\n",cpu.eax);
-	    printf("ecx: %x\n",cpu.ecx);
-	    printf("edx: %x\n",cpu.edx);
-	    printf("ebx: %x\n",cpu.ebx);
-	    printf("esp: %x\n",cpu.esp);
-	    printf("ebp: %x\n",cpu.ebp);
-	    printf("esi: %x\n",cpu.esi);
-	    printf("edi: %x\n",cpu.edi);
+		printf("eax: 0x%x\n",cpu.eax);
+	    printf("ecx: 0x%x\n",cpu.ecx);
+	    printf("edx: 0x%x\n",cpu.edx);
+	    printf("ebx: 0x%x\n",cpu.ebx);
+	    printf("esp: 0x%x\n",cpu.esp);
+	    printf("ebp: 0x%x\n",cpu.ebp);
+	    printf("esi: 0x%x\n",cpu.esi);
+	    printf("edi: 0x%x\n",cpu.edi);
 	}
 	return 0;	
 }
