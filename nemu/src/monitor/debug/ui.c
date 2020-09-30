@@ -82,13 +82,13 @@ static int cmd_help(char *args) {
 // my code: cmd_si[N]
 static int cmd_si(char *args) {
 	char *arg = strtok(NULL, " "); // the first one ,it should be si
-	char *arg_end1 = arg + strlen(arg); // it it the "[N]"
+	//char *arg_end1 = arg + strlen(arg); // it it the "[N]"
 	int count_number;
-	if (arg_end1 == NULL) {
+	if (arg == NULL) {
 		count_number = 1;
 	}
 	else{
-		count_number = atoi(arg_end1);
+		count_number = atoi(arg);
 	}
 	cpu_exec(count_number);
 	return 0;
