@@ -98,9 +98,10 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
-	char *arg = strtok(args, " ");
+	char *arg = strtok(NULL, " ");
 	if (arg == NULL){
 		printf("too few arguments. type 'help' for more detiles" );
+		return 0;
 	}
 	if (*arg == 'r'){
 		printf("eax: %x\n",cpu.eax);
