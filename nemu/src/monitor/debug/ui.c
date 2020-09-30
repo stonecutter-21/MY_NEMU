@@ -88,8 +88,9 @@ static int cmd_si(char *args) {
 	}
 	else{
 		count_number = atoi(arg);
-		printf("test: the number is:%d",count_number);
+		
 	}
+    printf("test: the number is:%d",count_number);
 	cpu_exec(count_number);
 	return 0;
 }
