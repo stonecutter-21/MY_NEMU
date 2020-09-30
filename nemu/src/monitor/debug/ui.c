@@ -79,6 +79,26 @@ static int cmd_help(char *args) {
 	return 0;
 }
 
+
+
+
+
+
+
+static int cmd_si(char *args){   
+    char *arg = strtok(args," ");
+    // printf("%s\n",arg);
+    if(arg == NULL){
+        printf("too few arguments.\n");
+        return 1;
+    }
+    int num = atoi(arg);
+    cpu_exec(num);
+    printf("OK");
+    return 0;
+};
+
+/*
 // my code: cmd_si[N]
 static int cmd_si(char *args) {
 	char *arg = strtok(args, " "); // it should be a string of number, such as 1 or 2
@@ -92,10 +112,10 @@ static int cmd_si(char *args) {
 	}
 	// i don't know why, if number is bigger than 9, they don't excecute it...
 	cpu_exec(count_number);
-	printf("test: the number is:%d\n",count_number);
+	// printf("test: the number is:%d\n",count_number);
 	return 0;
 }
-
+*/
 void ui_mainloop() {
 	while(1) {
 		char *str = rl_gets();
