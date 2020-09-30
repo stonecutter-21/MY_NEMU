@@ -42,6 +42,8 @@ static int cmd_si(char *args);
 
 static int cmd_info(char *args);
 
+static int cmd_scan_mem(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -52,6 +54,8 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "The program executes N instructions in a single step and then pauses. When N is not given, the default is 1", cmd_si},
 	{ "info", "'-r',print register state. '-w', print monitor point information", cmd_info},
+	{ "x","'x N EXPR', find the expression EXPR", cmd_scan_mem},
+
 	/* TODO: Add more commands */
 
 };
@@ -97,6 +101,7 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
+// my code: cmd_info()
 static int cmd_info(char *args) {
 	char *arg = strtok(NULL, " ");
 	if (arg == NULL){
@@ -114,6 +119,31 @@ static int cmd_info(char *args) {
 	    printf("edi: 0x%x\n",cpu.edi);
 	}
 	return 0;	
+}
+
+static int cmd_scan_mem(char *args) {
+	char *arg1 = strtok(NULL, " "); // first arg -- number 
+	char *arg2 = strtok (NULL, " "); // second arg -- addr
+	uint32_t N_temp;  // the 'N'
+	uint32_t EX_temp;  // the 'N'
+
+	if (arg1 == NULL){
+		printf("Too few arguments. Type \"help\" for more infomations\n");
+		return 0;
+	}
+	if (arg2 == NULL){
+		printf("Too few arguments. Type \"help\" for more infomations\n");
+		return 0;
+	}
+	sscanf(arg1,"%d",&N_temp);
+	sscanf(arg2,"%x",&EX_temp);
+	int i ;
+	uint32_t addr;
+	for(i = 0; i< N_temp; i++) {
+		addr = swaddr_read(EX_temp + i, 1);
+		printf("%x: %x\n",EX_temp,addr);
+	}
+	return 0;
 }
 
 void ui_mainloop() {
