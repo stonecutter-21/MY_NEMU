@@ -81,14 +81,14 @@ static int cmd_help(char *args) {
 
 // my code: cmd_si[N]
 static int cmd_si(char *args) {
-	char *arg = strtok(NULL, " "); // the first one ,it should be si
-	//char *arg_end1 = arg + strlen(arg); // it it the "[N]"
+	char *arg = strtok(NULL, " "); // it should be a string of number, such as 1 or 2
 	int count_number;
 	if (arg == NULL) {
 		count_number = 1;
 	}
 	else{
 		count_number = atoi(arg);
+		printf("test: the number is:%d",count_number);
 	}
 	cpu_exec(count_number);
 	return 0;
