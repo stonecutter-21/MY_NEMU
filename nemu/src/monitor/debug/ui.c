@@ -82,7 +82,7 @@ static int cmd_help(char *args) {
 // my code: cmd_si[N]
 static int cmd_si(char *args) {
 	char *arg = strtok(NULL, " "); // it should be a string of number, such as 1 or 2
-	int count_number;
+	uint32_t count_number;
 	if (arg == NULL) {
 		count_number = 1;
 	}
@@ -90,9 +90,9 @@ static int cmd_si(char *args) {
 		count_number = atoi(arg);
 		
 	}
-    // printf("test: the number is:%d",count_number);
 	// i don't know why, if number is big than 9, they don't excecute it...
-	cpu_exec((int)count_number);
+	cpu_exec(count_number);
+	// printf("test: the number is:%d",count_number);
 	return 0;
 }
 
