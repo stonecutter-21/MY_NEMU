@@ -87,10 +87,9 @@ static int cmd_si(char *args) {
 		count_number = 1;
 	}
 	else{
-		count_number = atoi(arg);
-		
+		sscanf(arg,"%d",&count_number);
 	}
-	// i don't know why, if number is bigger than 9, they don't excecute it...
+	// i don't know why, if number is bigger than 9, it doesn't show anything...
 	cpu_exec(count_number);
 	// printf("test: the number is:%d\n",count_number);
 	return 0;
