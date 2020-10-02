@@ -141,7 +141,9 @@ static int cmd_scan_mem(char *args) {
 	uint32_t addr;
 	for(i = 0; i< N_temp; i++) {
 		addr = swaddr_read(EX_temp + i, 1);
-		printf("%x: 0%2x\n",EX_temp+i,addr);
+		// we should print things like "00" ,instead of 0
+		// so we use %02x -- which is importand...
+		printf("%x: %02x\n",EX_temp+i,addr);
 	}
 	return 0;
 }
