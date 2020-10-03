@@ -169,10 +169,16 @@ int dominant_operator(int p, int q) {
 	int first_m_d = q;  // for the case that there is no '+' or '/'
 	int count = 0; // count the first time of '*' or '/' appears
 	int i;
+	int x;
+
+	for(x =0; x<nr_token;x++){
+			printf("%c ",tokens[x].type);
+		}
 	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
 		int flag = 0; // we think there is no parenthese at first
 		char now = tokens[i].type;
+		
 		switch (now)
 		{
 		case ')':
