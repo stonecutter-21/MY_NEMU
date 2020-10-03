@@ -131,6 +131,16 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+bool check_parentheses(int p, int q){
+	return true;
+}
+
+uint32_t eval(int p, int q) {
+	return 0;
+}
+
+
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
@@ -138,6 +148,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 
 	/* TODO: Insert codes to evaluate the expression. */
+	return eval(0, nr_token-1); // call this recursive funcition to compute the answer
 	panic("please implement me");
 	return 0;
 }
