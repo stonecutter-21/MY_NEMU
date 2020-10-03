@@ -184,6 +184,7 @@ int dominant_operator(int p, int q) {
 		case '+':
 		case '-':
 		    if (flag == 0) {
+				printf("really?\n");
 				return i;  // if in this case, it must be this one
 			}
 			break;
@@ -201,6 +202,7 @@ int dominant_operator(int p, int q) {
 			break;
 		}
 	}
+	printf("first_m_d == %d\n", first_m_d);
 	return first_m_d;
 }
 
@@ -224,7 +226,10 @@ uint32_t eval(int p, int q) {
 	}
 	else {
 		int index = dominant_operator(p, q);
+		printf ("p == %d  ", p);
+		printf ("q == %d  ", q);
 		char op = tokens[index].type;
+		printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1);
 		uint32_t v2 = eval(index+1, q);
