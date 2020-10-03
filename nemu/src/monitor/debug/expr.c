@@ -127,7 +127,6 @@ static bool make_token(char *e) {
 			return false;
 		}
 	}
-	printf("finish make-token\n");
 	return true; 
 }
 
@@ -213,6 +212,9 @@ uint32_t eval(int p, int q) {
 		if (tokens[p].type == NUMBER) {
 			int answer;
 			sscanf(tokens[p].str,"%d",&answer);
+			printf("!!!!!!!!!str == %s\n",tokens[p].str);
+			printf("!!!!!!!!!answer number == %d\n",answer);
+
 			return answer;
 		}
 		else {
