@@ -204,6 +204,8 @@ int dominant_operator(int p, int q) {
 }
 
 uint32_t eval(int p, int q) { 
+	printf ("p == %d\n",q);
+	printf ("q == %d\n",q);
 	if (p > q) {
 		return -1;
 		// it means the expression is wrong...
@@ -247,7 +249,6 @@ uint32_t expr(char *e, bool *success) {
 	}
 
 	/* TODO: Insert codes to evaluate the expression. */
-	printf ("nr_token == %d\n",nr_token);
 	return eval(0, nr_token-1); // call this recursive funcition to compute the answer
 	panic("please implement me");
 	return 0;
