@@ -159,11 +159,11 @@ static int cmd_EXPR(char *args) {
 	}
 	bool success=true;
 	int answer = expr (arg, &success);
-	if (success || answer == -1) {
-		printf (" %s = %d\n",arg, answer);
+	if (!success || answer == -1) {
+		printf ("Error input for an expression. Try again\n");
 	}
 	else {
-		printf ("Error input for an expression. Try again\n");
+		printf (" %s = %d\n",arg, answer);
 	}
 	return 0;
 
