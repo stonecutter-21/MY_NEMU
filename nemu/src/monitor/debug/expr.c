@@ -205,7 +205,6 @@ int dominant_operator(int p, int q) {
 }
 
 uint32_t eval(int p, int q) {
-	printf("begin call to eval!");
 	if (p > q) {
 		return -1;
 		// it means the expression is wrong...
