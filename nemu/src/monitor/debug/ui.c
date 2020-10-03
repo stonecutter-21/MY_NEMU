@@ -152,19 +152,18 @@ static int cmd_scan_mem(char *args) {
 }
 
 static int cmd_EXPR(char *args) {
-	char *arg = strtok(args, " "); // now arg hold one expression
-	printf ("arg == %s\n", arg);
-	if (arg == NULL) {
+	//char *arg = strtok(args, " "); // now arg hold one expression
+	if (args == NULL) {
 		printf("Too few arguments. Type \"help\" for more infomations\n");
 		return 0;
 	}
 	bool success=true;
-	int answer = expr (arg, &success);
+	int answer = expr (args, &success);
 	if (!success || answer == -1) {
 		printf ("Error input for an expression. Try again\n");
 	}
 	else {
-		printf ("%s = %d\n",arg, answer);
+		printf ("%s = %d\n",args, answer);
 	}
 	return 0;
 
