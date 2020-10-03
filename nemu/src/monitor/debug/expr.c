@@ -174,7 +174,7 @@ int dominant_operator(int p, int q) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
 		
 		char now = tokens[i].type;
-		printf("%c\n", now);
+		// printf("%c\n", now);
 		switch (now)
 		{
 		case ')':
@@ -186,7 +186,7 @@ int dominant_operator(int p, int q) {
 		case '+':
 		case '-':
 		    if (flag == 0) {
-				printf("really?\n");
+				// printf("really?\n");
 				return i;  // if in this case, it must be this one
 			}
 			break;
@@ -197,7 +197,7 @@ int dominant_operator(int p, int q) {
 			   // do the record
 			   if (count == 1) {
 				   first_m_d = i;
-				   printf("first_m_d == %d\n", first_m_d);
+			    //printf("first_m_d == %d\n", first_m_d);
 			    }
 			}
 			break;
@@ -228,10 +228,10 @@ uint32_t eval(int p, int q) {
 	}
 	else {
 		int index = dominant_operator(p, q);
-		printf ("p == %d  ", p);
-		printf ("q == %d  ", q);
+		// printf ("p == %d  ", p);
+		// printf ("q == %d  ", q);
 		char op = tokens[index].type;
-		printf ("op == %c\n", op);
+		// printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1);
 		uint32_t v2 = eval(index+1, q);
