@@ -222,6 +222,7 @@ uint32_t eval(int p, int q) {
 		return eval (p+1, q-1);
 	}
 	else {
+		printf("what about now...\n");
 		int index = dominant_operator(p, q);
 		char op = tokens[index].type;
 		uint32_t v1 = eval(p, op-1);
