@@ -143,10 +143,10 @@ static int cmd_scan_mem(char *args) {
 		addr = swaddr_read(EX_temp + i*4, 1);
 		// we should print things like "00" ,instead of 0
 		// so we use %02x -- which is importand...
-		printf("%x: %02x",EX_temp+i,addr);
-		printf("%02x",addr+1);
-		printf("%02x",addr+2);
-		printf("%02x\n",addr+3);
+		printf("0x%x: %02x ",EX_temp+i,addr);
+		printf("%02x ",addr+1);
+		printf("%02x ",addr+2);
+		printf("%02x \n",addr+3);
 	}
 	return 0;
 }
