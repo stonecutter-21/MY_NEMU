@@ -139,7 +139,7 @@ static int cmd_scan_mem(char *args) {
 	sscanf(arg2,"%x",&EX_temp);
 	int i ;
 	uint32_t addr;
-	for(i = 0; i< N_temp; i++) {
+	for(i = 0; i< N_temp*4; i+=4) {
 		addr = swaddr_read(EX_temp + i, 4);
 		// we should print things like "00" ,instead of 0
 		// so we use %02x\n to format the numbers
