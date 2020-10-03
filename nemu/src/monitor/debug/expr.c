@@ -169,7 +169,7 @@ int dominant_operator(int p, int q) {
 	int first_m_d = q;  // for the case that there is no '+' or '/'
 	int count = 0; // count the first time of '*' or '/' appears
 	int i;
-	for (i = p; i >= q; i--) {
+	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
 		bool flag = false; // we think there is no parenthese by default
 		char now = tokens[i].type;
@@ -223,8 +223,6 @@ uint32_t eval(int p, int q) {
 	}
 	else {
 		int index = dominant_operator(p, q);
-		printf ("p == %d\n", p);
-		printf ("q == %d\n", q);
 		char op = tokens[index].type;
 		//printf ("op (c)== %c\n", op);
 		//printf ("op (d)== %d\n", op);
