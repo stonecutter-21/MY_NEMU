@@ -132,11 +132,112 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(int p, int q){
-	return true;
+	// first we check if the p and q is "(" and ")"
+	if (tokens[p].type == '(' && tokens[q].type == ')') {
+	}
+	else {
+		return false;
+	}
+
+	// then we check if all the parenteses match
+	int count_num = 0;
+	int i;
+	for (i = p;  i <= q; i++) {
+		if (count_num < 0) {
+			return false;
+		}
+		else {
+			if ( tokens[i].type == '(') {
+				count_num ++;
+			}
+			else if (tokens[i].type == ')') {
+				count_num --;
+				if (count_num == 0 && i != q) 
+				    return false;
+			}
+		}
+	}
+	if (count_num == 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+// return the index of dominant operator
+int dominant_operator(int p, int q) {
+	int first_m_d = q;  // for the case that there is no '+' or '/'
+	int count = 0; // count the first time of '*' or '/' appears
+	int i;
+	for (i = p; i >= q; i--) {
+		// if there is a right parenthese, just escape these until meet a left parenthese
+		bool flag = false; // we think there is no parenthese by default
+		char now = tokens[i].type;
+		switch (now)
+		{
+		case ')':
+		    flag = true;
+			break;
+		case '(':
+		    flag = false;
+		case '+':
+		case '-':
+		    if (!flag) {
+				return i;  // if in this case, it must be this one
+			}
+			break;
+		case '*':
+		case '/':
+		    if (!flag) {
+			   count ++;
+			   // do the record
+			   if (count == 1) {
+				   first_m_d = i;
+			    }
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	return first_m_d;
 }
 
 uint32_t eval(int p, int q) {
-	return 0;
+	if (p > q) {
+		return -1;
+		// it means the expression is wrong...
+	}
+	else if (p == q) {
+		if (tokens[p].type == NUMBER) {
+			int answer;
+			sscanf(tokens[p].str,"%d",&answer);
+			return answer;
+		}
+		else {
+			return -1;
+		}
+	}
+	else if (check_parentheses(p ,q) == true) {
+		return eval (p+1, q-1);
+	}
+	else {
+		int index = dominant_operator(p, q);
+		char op = tokens[index].type;
+		uint32_t v1 = eval(p, op-1);
+		uint32_t v2 = eval(op+1, q);
+		switch (op)
+		{
+		case '+':   return v1 + v2;
+		case '-':   return v1 - v2;
+		case '*':   return v1 * v2;
+		case '/':   return v1 / v2;
+		default:
+			assert(0);
+		}
+
+	}
 }
 
 
