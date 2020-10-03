@@ -223,9 +223,6 @@ uint32_t eval(int p, int q) {
 	}
 	else {
 		int index = dominant_operator(p, q);
-		printf ("p == %d",p);
-		printf ("p == %d",q);
-		printf ("index == %d\n",index);
 		char op = tokens[index].type;
 		uint32_t v1 = eval(p, op-1);
 		uint32_t v2 = eval(op+1, q);
@@ -250,6 +247,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 
 	/* TODO: Insert codes to evaluate the expression. */
+	printf ("nr_token == %d\n",nr_token);
 	return eval(0, nr_token-1); // call this recursive funcition to compute the answer
 	panic("please implement me");
 	return 0;
