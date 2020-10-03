@@ -114,8 +114,8 @@ static bool make_token(char *e) {
 					  break;
 					case NUMBER:
 					  tokens[nr_token].type = NUMBER;
+					  strncpy(tokens[nr_token].str, substr_start,substr_len);
 					  nr_token ++;
-					  strncpy(tokens[nr_token].str, substr_start,substr_len); 
 					  break;
 				}
 				break;
@@ -211,10 +211,10 @@ uint32_t eval(int p, int q) {
 	else if (p == q) {
 		if (tokens[p].type == NUMBER) {
 			int answer;
-			printf("!!!p == %d",p);
+			//printf("!!!p == %d",p);
 			sscanf(tokens[p].str,"%d",&answer);
-			printf("!!!!!!!!!str == %s\n",tokens[p].str);
-			printf("!!!!!!!!!answer number == %d\n",answer);
+			//printf("!!!!!!!!!str == %s\n",tokens[p].str);
+			//printf("!!!!!!!!!answer number == %d\n",answer);
 
 			return answer;
 		}
