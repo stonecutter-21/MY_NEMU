@@ -211,6 +211,7 @@ uint32_t eval(int p, int q) {
 	else if (p == q) {
 		if (tokens[p].type == NUMBER) {
 			int answer;
+			printf("!!!p == %d",p);
 			sscanf(tokens[p].str,"%d",&answer);
 			printf("!!!!!!!!!str == %s\n",tokens[p].str);
 			printf("!!!!!!!!!answer number == %d\n",answer);
