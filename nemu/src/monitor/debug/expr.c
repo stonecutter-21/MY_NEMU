@@ -132,7 +132,6 @@ static bool make_token(char *e) {
 
 bool check_parentheses(int p, int q){
 	// first we check if the p and q is "(" and ")"
-	printf("begin call check_p\n");
 	if (tokens[p].type == '(' && tokens[q].type == ')') {
 	}
 	else {
@@ -205,6 +204,7 @@ int dominant_operator(int p, int q) {
 }
 
 uint32_t eval(int p, int q) {
+	printf ("begin call eval\n"); 
 	if (p > q) {
 		return -1;
 		// it means the expression is wrong...
