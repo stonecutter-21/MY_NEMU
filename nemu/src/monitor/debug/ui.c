@@ -157,7 +157,7 @@ static int cmd_EXPR(char *args) {
 		printf("Too few arguments. Type \"help\" for more infomations\n");
 		return 0;
 	}
-	bool success;
+	bool success=true;
 	int answer = expr (arg, &success);
 	if (success) {
 		printf ("The answer of %s is %d\n",arg, answer);
