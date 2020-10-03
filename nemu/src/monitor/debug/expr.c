@@ -195,6 +195,7 @@ int dominant_operator(int p, int q) {
 			   // do the record
 			   if (count == 1) {
 				   first_m_d = i;
+				   printf("first_m_d == %d\n", first_m_d);
 			    }
 			}
 			break;
@@ -202,7 +203,6 @@ int dominant_operator(int p, int q) {
 			break;
 		}
 	}
-	printf("first_m_d == %d\n", first_m_d);
 	return first_m_d;
 }
 
