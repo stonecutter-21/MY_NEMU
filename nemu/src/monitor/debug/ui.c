@@ -143,7 +143,7 @@ static int cmd_scan_mem(char *args) {
 		addr = swaddr_read(EX_temp + i, 4);
 		// we should print things like "00" ,instead of 0
 		// so we use %02x\n to format the numbers
-		printf("%x: %08x\n",EX_temp+i,addr);
+		printf("0x%x: 0x%08x\n",EX_temp+i,addr);
 	}
 	return 0;
 }
