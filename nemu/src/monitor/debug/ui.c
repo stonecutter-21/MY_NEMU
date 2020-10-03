@@ -163,7 +163,7 @@ static int cmd_EXPR(char *args) {
 		printf ("Error input for an expression. Try again\n");
 	}
 	else {
-		printf (" %s = %d\n",arg, answer);
+		printf ("%s = %d\n",arg, answer);
 	}
 	return 0;
 
