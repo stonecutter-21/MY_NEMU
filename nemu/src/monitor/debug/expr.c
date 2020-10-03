@@ -171,18 +171,19 @@ int dominant_operator(int p, int q) {
 	int i;
 	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
-		bool flag = false; // we think there is no parenthese by default
+		int flag = 0; // we think there is no parenthese by default
 		char now = tokens[i].type;
 		switch (now)
 		{
 		case ')':
-		    flag = true;
+		    flag ++;
 			break;
 		case '(':
-		    flag = false;
+		    flag --;
+			break;
 		case '+':
 		case '-':
-		    if (!flag) {
+		    if (flag == 0) {
 				return i;  // if in this case, it must be this one
 			}
 			break;
