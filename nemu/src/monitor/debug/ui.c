@@ -159,7 +159,7 @@ static int cmd_EXPR(char *args) {
 	}
 	bool success=true;
 	int answer = expr (arg, &success);
-	if (success) {
+	if (success || answer == -1) {
 		printf ("The answer of %s is %d\n",arg, answer);
 	}
 	else {
