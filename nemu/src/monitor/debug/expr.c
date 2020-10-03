@@ -223,11 +223,11 @@ uint32_t eval(int p, int q) {
 	}
 	else {
 		int index = dominant_operator(p, q);
-		printf ("p == %c\n", p);
-		printf ("q == %c\n", q);
+		printf ("p == %d\n", p);
+		printf ("q == %d\n", q);
 		char op = tokens[index].type;
-		printf ("op (c)== %c\n", op);
-		printf ("op (d)== %d\n", op);
+		//printf ("op (c)== %c\n", op);
+		//printf ("op (d)== %d\n", op);
 
 		uint32_t v1 = eval(p, index-1);
 		uint32_t v2 = eval(index+1, q);
