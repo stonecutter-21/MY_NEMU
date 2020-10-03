@@ -171,7 +171,7 @@ int dominant_operator(int p, int q) {
 	int i;
 	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
-		int flag = 0; // we think there is no parenthese by default
+		int flag = 0; // we think there is no parenthese at first
 		char now = tokens[i].type;
 		switch (now)
 		{
@@ -184,6 +184,7 @@ int dominant_operator(int p, int q) {
 		case '+':
 		case '-':
 		    if (flag == 0) {
+				printf("really?\n");
 				return i;  // if in this case, it must be this one
 			}
 			break;
@@ -201,6 +202,7 @@ int dominant_operator(int p, int q) {
 			break;
 		}
 	}
+	printf("first_m_d == %d\n", first_m_d);
 	return first_m_d;
 }
 
