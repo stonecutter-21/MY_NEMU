@@ -203,9 +203,7 @@ int dominant_operator(int p, int q) {
 	return first_m_d;
 }
 
-uint32_t eval(int p, int q) { 
-	printf ("p == %d\n",q);
-	printf ("q == %d\n",q);
+uint32_t eval(int p, int q) {
 	if (p > q) {
 		return -1;
 		// it means the expression is wrong...
@@ -226,8 +224,8 @@ uint32_t eval(int p, int q) {
 	else {
 		int index = dominant_operator(p, q);
 		char op = tokens[index].type;
-		uint32_t v1 = eval(p, op-1);
-		uint32_t v2 = eval(op+1, q);
+		uint32_t v1 = eval(p, index-1);
+		uint32_t v2 = eval(index+1, q);
 		switch (op)
 		{
 		case '+':   return v1 + v2;
