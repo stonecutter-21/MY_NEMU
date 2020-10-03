@@ -152,7 +152,6 @@ static int cmd_scan_mem(char *args) {
 }
 
 static int cmd_EXPR(char *args) {
-	//char *arg = strtok(args, " "); // now arg hold one expression
 	if (args == NULL) {
 		printf("Too few arguments. Type \"help\" for more infomations\n");
 		return 0;
