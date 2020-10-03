@@ -160,10 +160,10 @@ static int cmd_EXPR(char *args) {
 	bool success;
 	int answer = expr (arg, &success);
 	if (success) {
-		printf ("The answer of %s is %d",arg, answer);
+		printf ("The answer of %s is %d\n",arg, answer);
 	}
 	else {
-		printf ("Error input for an expression. Try again");
+		printf ("Error input for an expression. Try again\n");
 	}
 	return 0;
 

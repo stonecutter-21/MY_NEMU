@@ -113,6 +113,7 @@ static bool make_token(char *e) {
 					  nr_token ++;
 					  break;
 					case NUMBER:
+					  printf("!!!!!\n");
 					  tokens[nr_token].type = NUMBER;
 					  nr_token ++;
 					  strncpy(tokens[nr_token].str, substr_start,substr_len); 
