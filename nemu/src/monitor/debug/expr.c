@@ -259,15 +259,15 @@ uint32_t eval(int p, int q, bool *success) {
 	else {
 		int index = dominant_operator(p, q);
 		printf ("index == %d\n", index);
-		// printf ("p == %d  ", p);
-		// printf ("q == %d  ", q);
+	    printf ("p == %d  ", p);
+		printf ("q == %d  ", q);
 		char op = tokens[index].type;
 	    printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1, success);
-		//printf ("v1 == %d\n", v1);
+		printf ("v1 == %d\n", v1);
 		uint32_t v2 = eval(index+1, q, success);
-		//printf ("v2 == %d\n", v2);
+		printf ("v2 == %d\n", v2);
 		switch (op)
 		{
 		case '+':   return v1 + v2;
@@ -291,7 +291,6 @@ uint32_t expr(char *e, bool *success) {
 	for (i = 0 ; i < nr_token; i++) {
 		if 
 		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
-			printf ("here, is it?\n");
 			tokens[i].type = DEREF;
 		}
 	}
