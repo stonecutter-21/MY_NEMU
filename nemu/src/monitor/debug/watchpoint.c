@@ -28,7 +28,7 @@ void add_a_watch(char *str) {
 	new_wp(str);
 	WP* node = head;
 	while (node != NULL) {
-		printf("watch point %d: %s\n", node->NO,node->str);
+		printf("%s\n",node->str);
 		node = node->next;
 	}
 }
