@@ -25,33 +25,25 @@ void init_wp_pool() {
 WP* new_wp(char *str) {
 	if (free_ == NULL) {
 		assert(0);
-	}
-	// if head is NULL , five it a value
-	
-	if (head == NULL) {
-		
-		head = free_;
-		head->next = NULL;
-		head->prev = NULL;
-		free_ = free_->next;
-		free_->prev = NULL;
-		strcpy(head->str,str);
-	    return head;
-	}
-	else {
-		// first we build the list, add the node
-	    WP* temp_f = free_;
-	    free_ = free_->next;
-	    free_->prev = NULL;
-	    temp_f->next = head;
-	    head->prev = temp_f; // here
-	    head = temp_f;
+	} 
+	// first we build the list, add the node
+	WP* temp_f = free_;
+	WP* temp_h = head;
+	// deal with free list
+	free_ = free_->next;
+	free_->prev = NULL;
+	// deal with head list
 
-	    //then we gave the value to the new node
-	    strcpy(head->str,str);
-	    return head;
+    head = temp_f;
+	head->next = temp_h;
+	if (head->next) {
+		head->next->prev = head;
 	}
 	
+
+	//then we gave the value to the new node
+	strcpy(head->str,str);
+	return head;
 }
 void free_wp(WP *wp) {
 	wp->prev->next = wp->next;
