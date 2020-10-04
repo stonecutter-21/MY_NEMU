@@ -35,7 +35,7 @@ WP* new_wp(char *str) {
 	// deal with head list
     head = temp_f;
 	head->next = temp_h;
-	if (printf ("11111\n") && head->next) {
+	if (head->next || printf ("11111\n") ) {
 		head->next->prev = head;
 	}
 	
