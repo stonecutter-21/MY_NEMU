@@ -176,7 +176,6 @@ int dominant_operator(int p, int q) {
     int flag = 0; // we think there is no parenthese at first
 	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
-		printf ("i == %d\n  ", i);
 		char now = tokens[i].type;
 		// printf("%c\n", now);
 		switch (now)
@@ -209,7 +208,7 @@ int dominant_operator(int p, int q) {
 			   // do the record
 			   if (count == 1) {
 				   first_m_d = i;
-			    printf("first_m_d == %d\n", first_m_d);
+			    // printf("first_m_d == %d\n", first_m_d);
 			    }
 			}
 			break;
@@ -234,7 +233,7 @@ uint32_t eval(int p, int q, bool *success) {
 			return answer;
 		}
 		else {
-			//printf ("here in p == q?\n");
+			// printf ("here in p == q?\n");
 			*success = false;
 			return -1;
 		}
@@ -292,6 +291,7 @@ uint32_t expr(char *e, bool *success) {
 	for (i = 0 ; i < nr_token; i++) {
 		if 
 		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
+			printf ("here, is it?\n");
 			tokens[i].type = DEREF;
 		}
 	}
