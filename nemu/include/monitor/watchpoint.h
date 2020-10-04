@@ -7,7 +7,7 @@ typedef struct watchpoint {
 	int NO;
 	struct watchpoint *next; // next node
 	struct watchpoint *prev; //before node
-	char *str;  // hold the expression
+	char str[32];  // hold the expression
 
 	/* TODO: Add more members if necessary */
 
