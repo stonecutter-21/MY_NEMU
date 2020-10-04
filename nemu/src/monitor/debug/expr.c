@@ -32,8 +32,8 @@ static struct rule {
 	{"/", '/'},                     // divide
 	{"\\(", '('},                   // (
 	{"\\)", ')'},                   // )
+	{"\\$[a-ehilpx]{2,3}",REG},     // register
 	{"0x[0-9a-f]+",HEX},            //hex-numbets
-	{"$[a-ehilpx]{2,3}",REG},     // register
 	{"[0-9]+", NUMBER},             // numbers
 	
 };
