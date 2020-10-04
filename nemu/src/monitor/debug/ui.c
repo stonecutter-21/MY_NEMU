@@ -127,6 +127,7 @@ static int cmd_info(char *args) {
 
 	}
 	if (*args == 'w') {
+		printf("!!!!!!!!");
 		print_wp();
 	}
 	return 0;	
