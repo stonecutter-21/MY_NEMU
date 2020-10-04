@@ -23,22 +23,23 @@ void init_wp_pool() {
 
 // we should use this wp from 0 to 31
 WP* new_wp(char *str) {
+	if (head == NULL) {
+		printf ("1\n");
+	}
+	else {
+		printf ("2\n");
+	}
 	if (free_ == NULL) {
 		assert(0);
 	}
 	// if head is NULL , five it a value
 	if (head == NULL) {
-		printf("!!!!!");
+		
 		head = free_;
-		printf("!!!!!");
 		head->next = NULL;
-		printf("!!!!!");
 		head->prev = NULL;
-		printf("!!!!!");
 		free_ = free_->next;
-		printf("!!!!!");
 		free_->prev = NULL;
-		printf("!!!!!");
 		strcpy(head->str,str);
 	    return head;
 	}
