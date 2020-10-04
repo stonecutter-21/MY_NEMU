@@ -47,8 +47,9 @@ WP* new_wp(char *str) {
 	}
 	head ->prev = NULL;
 	//then we gave the value to the new node
-	printf("%s\n",str);
+	
 	strcpy(head->str,str);
+	printf("%s\n",str);
 	return head;
 }
 void free_wp(WP *wp) {
