@@ -5,8 +5,9 @@
 
 typedef struct watchpoint {
 	int NO;
-	struct watchpoint *next;
-	struct watchpoint *prev;
+	struct watchpoint *next; // next node
+	struct watchpoint *prev; //before node
+	
 
 	/* TODO: Add more members if necessary */
 
