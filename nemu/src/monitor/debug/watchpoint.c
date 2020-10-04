@@ -59,6 +59,9 @@ void free_wp(WP *wp) {
 	if (temp_f != NULL) {
 		temp_f ->prev = wp;
 	}
+	else {
+		wp->prev = wp->next = NULL;
+	}
 
 	if (wp->prev != NULL) {
 		temp_w->prev->next = temp_w->next;
@@ -86,7 +89,6 @@ void delete_point(int num){
 	while (node != NULL) {
 		
 		if (node->NO == num) {
-			printf("11\n");
 			free_wp(node);
 		}
 		node = node->next;
