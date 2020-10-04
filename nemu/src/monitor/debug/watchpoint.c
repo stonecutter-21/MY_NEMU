@@ -46,7 +46,6 @@ WP* new_wp(char *str) {
 		temp_h->prev = head;
 	}
 	head ->prev = NULL;
-	head->str = str;
 	//then we gave the value to the new node
 	strcpy(head->str,str);
 	return head;
