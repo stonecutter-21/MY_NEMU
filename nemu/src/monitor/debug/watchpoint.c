@@ -39,9 +39,9 @@ WP* new_wp(char *str) {
 		head->next->prev = head;
 	}
 	head->str = str;
-	printf ("sbargs==%s", str);
 	//then we gave the value to the new node
 	strcpy(head->str,str);
+	printf ("args ==%s\n",head->str); 
 	return head;
 }
 void free_wp(WP *wp) {
