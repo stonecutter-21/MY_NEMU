@@ -335,16 +335,23 @@ uint32_t eval(int p, int q, bool *success) {
 		else if(tokens[p].type == NOT) {
 			return !(eval(q,q,success));
 		}
+		else if (tokens[p].type == DEREF) {
+			return swaddr_read( eval(q,q,success), 4);
+		}
 		else {
 			*success = false;
 			return -1;
 		}
 	}
-	else if (tokens[p].type == '-' && tokens[p+1].type == '(') {
+
+	else if (tokens[p].type == '-' && tokens[p+1].type == '(' && tokens[q].type == ')') {
 		return -(eval(p+1,q,success));
 	}
-	else if (tokens[p].type == NOT && tokens[p+1].type == '(') {
+	else if (tokens[p].type == NOT && tokens[p+1].type == '('&& tokens[q].type == ')') {
 		return !(eval(p+1,q,success));
+	}
+	else if (tokens[p].type == DEREF && tokens[p+1].type == '('&& tokens[q].type == ')') {
+		return swaddr_read( eval(p+1,q,success), 4);
 	}
 	else {
 		int index = dominant_operator(p, q);
