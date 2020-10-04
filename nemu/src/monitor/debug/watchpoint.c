@@ -9,11 +9,13 @@ static WP *head, *free_;
 void init_wp_pool() {
 	int i;
 	for(i = 0; i < NR_WP-1; i ++) {
+		wp_pool[i].str = NULL;
 		wp_pool[i].NO = i;
 		wp_pool[i].next = &wp_pool[i + 1];
 		wp_pool[i+1].prev = &wp_pool[i];
 
 	}
+	wp_pool[NR_WP - 1].str = NULL;
 	wp_pool[NR_WP - 1].next = NULL;
 	wp_pool[0].prev = NULL;
 
