@@ -92,36 +92,28 @@ static bool make_token(char *e) {
 					default: panic("please implement me");
 					case NOTYPE:
 					  break;
-					case '+':
-					  tokens[nr_token].type = '+';
-					  nr_token ++;
-					  break;
-					case '-':
-					  tokens[nr_token].type = '-';
-					  nr_token ++;
-					  break;
-					case '*':
-					
-					  tokens[nr_token].type = '*';
-					  nr_token ++;
-					  break;
-					case '/':
-					  tokens[nr_token].type = '/';
-					  nr_token ++;
-					  break;
-					case '(':
-					  tokens[nr_token].type = '(';
-					  nr_token ++;
-					  break;
-					case ')':
-					  tokens[nr_token].type = ')';
-					  nr_token ++;
-					  break;
 					case NUMBER:
 					  tokens[nr_token].type = NUMBER;
 					  strncpy(tokens[nr_token].str, substr_start,substr_len);
 					  nr_token ++;
 					  break;
+					case HEX:
+					  tokens[nr_token].type = HEX;
+					  strncpy(tokens[nr_token].str, substr_start,substr_len);
+					  nr_token ++;
+					  break;
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+					case '(':
+					case ')':
+					case AND:
+					case OR :
+					case NOT:
+					case DEREF:
+					   tokens[nr_token].type = rules[i].token_type;
+					   nr_token ++;
 				}
 				break;
 			}
