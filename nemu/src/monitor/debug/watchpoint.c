@@ -36,6 +36,7 @@ WP* new_wp(char *str) {
     head = temp_f;
 	head->next = temp_h;
 	if (head->next || printf ("11111\n") ) {
+		printf ("11111\n"); 
 		head->next->prev = head;
 	}
 	
