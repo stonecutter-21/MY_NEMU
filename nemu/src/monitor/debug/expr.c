@@ -177,7 +177,7 @@ int dominant_operator(int p, int q) {
 	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
 		char now = tokens[i].type;
-		// printf("%c\n", now);
+		printf("now == %d\n", now);
 		switch (now)
 		{
 		case ')':
@@ -258,16 +258,16 @@ uint32_t eval(int p, int q, bool *success) {
 	}
 	else {
 		int index = dominant_operator(p, q);
-		printf ("index == %d\n", index);
-	    printf ("p == %d  ", p);
-		printf ("q == %d  ", q);
+		//printf ("index == %d\n", index);
+	   // printf ("p == %d  ", p);
+		//printf ("q == %d  ", q);
 		char op = tokens[index].type;
-	    printf ("op == %c\n", op);
+	   // printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1, success);
-		printf ("v1 == %d\n", v1);
+		//printf ("v1 == %d\n", v1);
 		uint32_t v2 = eval(index+1, q, success);
-		printf ("v2 == %d\n", v2);
+	//	printf ("v2 == %d\n", v2);
 		switch (op)
 		{
 		case '+':   return v1 + v2;
