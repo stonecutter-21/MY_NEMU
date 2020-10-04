@@ -102,6 +102,11 @@ static bool make_token(char *e) {
 					  strncpy(tokens[nr_token].str, substr_start,substr_len);
 					  nr_token ++;
 					  break;
+					case REG:
+					  tokens[nr_token].type = REG;
+					  strncpy(tokens[nr_token].str, substr_start,substr_len);
+					  nr_token ++;
+					  break;
 					case '+':
 					case '-':
 					case '*':
@@ -253,6 +258,42 @@ int dominant_operator(int p, int q) {
 	
 }
 
+
+
+int help_find_reg(char *arg, bool *success) {
+	if (strcmp(arg,"$eax") == 0 ) {
+		return cpu.eax;
+	}
+	else if (strcmp(arg,"$ebp") == 0) {
+		return cpu.ebp;
+	}
+	else if (strcmp(arg,"$ebx") == 0) {
+		return cpu.ebx;
+	}
+	else if (strcmp(arg,"$ecx") == 0) {
+		return cpu.ecx;
+	}
+	else if (strcmp(arg,"$edi") == 0) {
+		return cpu.edi;
+	}
+	else if (strcmp(arg,"$edx") == 0) {
+		return cpu.edx;
+	}
+	else if (strcmp(arg,"$eip") == 0) {
+		return cpu.eip;
+	}
+	else if (strcmp(arg,"$esi") == 0) {
+		return cpu.esi;
+	}
+	else if (strcmp(arg,"$esp") == 0) {
+		return cpu.esp;
+	}
+	else {
+		*success = false;
+		return -1;
+	}
+}
+
 uint32_t eval(int p, int q, bool *success) {
 	if (p > q) {
 		//printf ("here in p > q?\n");
@@ -270,6 +311,10 @@ uint32_t eval(int p, int q, bool *success) {
 			int answer;
 			sscanf(tokens[p].str,"%x",&answer);
 			return answer;
+		}
+		else if (tokens[p].type == REG){
+
+			return help_find_reg(tokens[p].str, success);
 		}
 		else {
 			// printf ("here in p == q?\n");
