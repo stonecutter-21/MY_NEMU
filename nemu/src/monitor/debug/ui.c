@@ -183,6 +183,9 @@ static int cmd_WATCH(char *args) {
 		printf("Too few arguments. Type \"help\" for more infomations\n");
 		return 0;
 	}
+	else {
+		
+	}
 	return 0;
 }
 void ui_mainloop() {
