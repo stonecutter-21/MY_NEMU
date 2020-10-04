@@ -26,6 +26,8 @@ void add_a_watch(char *str) {
 	new_wp(str);
 }
 
+
+
 // we should use this wp from 0 to 31
 WP* new_wp(char *str) {
 	if (free_ == NULL) {
@@ -62,6 +64,10 @@ void print_wp() {
 		printf("watch point %d: %s\n", node->NO,node->str);
 		node = node->next;
 	}
+}
+
+void delete_point(){
+	free_wp(head);
 }
 
  
