@@ -7,10 +7,8 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NUMBER, 
-
+	NOTYPE = 256, EQ, NEQ, AND, OR, NOT, NUMBER, HEX,REG, DEREF,
 	/* TODO: Add more token types */
-
 };
 
 static struct rule {
@@ -25,12 +23,18 @@ static struct rule {
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
 	{"==", EQ},					    // equal
+	{"!=", NEQ},                    // not equal
+	{"&&", AND},                    // and
+	{"||", OR},                     // or
+	{"!", NOT},                     // not
 	{"-", '-'},                     // subtract
 	{"\\*", '*'},                   // multiply
 	{"/", '/'},                     // divide
 	{"\\(", '('},                   // (
 	{"\\)", ')'},                   // )
 	{"[0-9]+", NUMBER},             // numbers
+	{"0x[0-9a-f]+",HEX},            //hex-numbets
+	{"\\$[a-ehilpx]{2,3}",REG},     // register
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -283,7 +287,13 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-
+	int i;
+	for (i = 0 ; i < nr_token; i++) {
+		if 
+		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
+			tokens[i].type = DEREF;
+		}
+	}
 	/* TODO: Insert codes to evaluate the expression. */
 	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
 	panic("please implement me");
