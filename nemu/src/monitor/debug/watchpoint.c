@@ -20,7 +20,7 @@ void init_wp_pool() {
 	head = NULL;
 	free_ = wp_pool;
 }
-/*
+
 // we should use this wp from 0 to 31
 WP* new_wp() {
 	if (free_ == NULL) {
@@ -43,7 +43,7 @@ void free_wp(WP *wp) {
 }
 
 
-*/
+
 
 /* TODO: Implement the functionality of watchpoint */
 
