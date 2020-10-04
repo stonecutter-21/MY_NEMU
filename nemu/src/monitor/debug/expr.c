@@ -216,9 +216,10 @@ int dominant_operator(int p, int q) {
 	return first_m_d;
 }
 
-uint32_t eval(int p, int q) {
+uint32_t eval(int p, int q, bool *success) {
 	if (p > q) {
-		printf ("here in p > q?\n");
+		//printf ("here in p > q?\n");
+		*success = false;
 		return -1;
 		// it means the expression is wrong...
 	}
@@ -229,17 +230,19 @@ uint32_t eval(int p, int q) {
 			return answer;
 		}
 		else {
-			printf ("here in p == q?\n");
+			//printf ("here in p == q?\n");
+			*success = false;
 			return -1;
 		}
 	}
 
 	else if (check_parentheses(p ,q) == true) {
-		return eval (p+1, q-1);
+
+		return eval (p+1, q-1, success);
 	}
 	// specially deal with the case like '-1'  or '- (1+1)'
 	else if (tokens[0].type == '-') {
-		return -(eval(p+1,q));
+		return -(eval(p+1,q,success));
 	}
 	else {
 		int index = dominant_operator(p, q);
@@ -248,8 +251,8 @@ uint32_t eval(int p, int q) {
 		char op = tokens[index].type;
 		// printf ("op == %c\n", op);
 
-		uint32_t v1 = eval(p, index-1);
-		uint32_t v2 = eval(index+1, q);
+		uint32_t v1 = eval(p, index-1, success);
+		uint32_t v2 = eval(index+1, q, success);
 		switch (op)
 		{
 		case '+':   return v1 + v2;
@@ -271,7 +274,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 
 	/* TODO: Insert codes to evaluate the expression. */
-	return eval(0, nr_token-1); // call this recursive funcition to compute the answer
+	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
 	panic("please implement me");
 	return 0;
 }

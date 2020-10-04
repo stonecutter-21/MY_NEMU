@@ -158,7 +158,7 @@ static int cmd_EXPR(char *args) {
 	}
 	bool success=true;
 	int answer = expr (args, &success);
-	if (!success || answer == -1) {
+	if (!success) {
 	    printf ("return == %d\n",answer);
 		printf ("Error input for an expression. Try again\n");
 	}
