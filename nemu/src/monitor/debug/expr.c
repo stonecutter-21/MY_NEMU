@@ -178,7 +178,7 @@ int dominant_operator(int p, int q) {
 	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
 		char now = tokens[i].type;
-		printf("now == %d\n", now);
+		//printf("now == %d\n", now);
 		switch (now)
 		{
 		case ')':
@@ -288,15 +288,13 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-	//int i;
-	/*
+	int i;
 	for (i = 0 ; i < nr_token; i++) {
 		if 
-		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
+		(tokens[i].type == '*' && (i == 0 || (tokens[i].type !=NUMBER && tokens[i].type != ')' ))) {
 			tokens[i].type = DEREF;
 		}
 	}
-	*/
 	/* TODO: Insert codes to evaluate the expression. */
 	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
 	panic("please implement me");
