@@ -249,7 +249,7 @@ uint32_t eval(int p, int q, bool *success) {
 		// printf ("p == %d  ", p);
 		// printf ("q == %d  ", q);
 		char op = tokens[index].type;
-		// printf ("op == %c\n", op);
+	    printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1, success);
 		uint32_t v2 = eval(index+1, q, success);
