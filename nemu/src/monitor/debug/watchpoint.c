@@ -21,6 +21,11 @@ void init_wp_pool() {
 	free_ = wp_pool;
 }
 
+
+void add_a_watch(char *str) {
+	new_wp(str);
+}
+
 // we should use this wp from 0 to 31
 WP* new_wp(char *str) {
 	if (free_ == NULL) {
