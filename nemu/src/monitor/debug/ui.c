@@ -174,6 +174,7 @@ static int cmd_EXPR(char *args) {
 	return 0;
 
 }
+
 void ui_mainloop() {
 	while(1) {
 		char *str = rl_gets();
