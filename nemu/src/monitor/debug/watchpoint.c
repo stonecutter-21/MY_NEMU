@@ -49,11 +49,6 @@ WP* new_wp(char *str) {
 	head->str = str;
 	//then we gave the value to the new node
 	strcpy(head->str,str);
-	WP* node = head;
-	while (node != NULL) {
-		printf("watch point %d: %s\n", node->NO,node->str);
-		node = node->next;
-	}
 	return head;
 }
 void free_wp(WP *wp) {
