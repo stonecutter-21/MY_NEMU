@@ -69,6 +69,7 @@ void print_wp() {
 void delete_point(int num){
 	WP* node = head;
 	while (node != NULL) {
+		printf("11\n");
 		if (node->NO == num) {
 			free_wp(node);
 		}
