@@ -237,7 +237,7 @@ uint32_t eval(int p, int q) {
 	}
 	// specially deal with the case like '-1'  or '- (1+1)'
 	else if (tokens[0].type == '-') {
-		return 0;
+		return -(eval(p+1,q));
 	}
 	else {
 		int index = dominant_operator(p, q);
