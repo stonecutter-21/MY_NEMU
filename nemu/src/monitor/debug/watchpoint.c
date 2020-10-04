@@ -28,11 +28,17 @@ WP* new_wp(char *str) {
 	}
 	// if head is NULL , five it a value
 	if (head == NULL) {
+		printf("!!!!!");
 		head = free_;
+		printf("!!!!!");
 		head->next = NULL;
+		printf("!!!!!");
 		head->prev = NULL;
+		printf("!!!!!");
 		free_ = free_->next;
+		printf("!!!!!");
 		free_->prev = NULL;
+		printf("!!!!!");
 		strcpy(head->str,str);
 	    return head;
 	}
