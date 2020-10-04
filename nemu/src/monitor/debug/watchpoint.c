@@ -29,11 +29,17 @@ WP* new_wp(char *str) {
 	// first we build the list, add the node
 	printf("!!!!\n");
 	WP* temp_f = free_;
+	printf("!!!!\n");
 	free_ = free_->next;
+	printf("!!!!\n");
 	free_->prev = NULL;
+	printf("!!!!\n");
 	temp_f->next = head;
+	printf("!!!!\n");
 	head->prev = temp_f;
+	printf("!!!!\n");
 	head = temp_f;
+	printf("!!!!\n");
 
 	//then we gave the value to the new node
 	strcpy(head->str,str);
