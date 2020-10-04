@@ -288,6 +288,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
+	/*
 	int i;
 	for (i = 0 ; i < nr_token; i++) {
 		if 
@@ -295,6 +296,7 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].type = DEREF;
 		}
 	}
+	*/
 	/* TODO: Insert codes to evaluate the expression. */
 	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
 	panic("please implement me");
