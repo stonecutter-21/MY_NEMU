@@ -241,6 +241,15 @@ uint32_t eval(int p, int q, bool *success) {
 		return eval (p+1, q-1, success);
 	}
 	// specially deal with the case like '-1'  or '- (1+1)'
+	else if (p + 1 == q) {
+		if (tokens[p].type == '-') {
+			return - (eval(q,q,success));
+		}
+		else {
+			*success = false;
+			return -1;
+		}
+	}
 	else if (tokens[p].type == '-' && tokens[p+1].type == '(') {
 		return -(eval(p+1,q,success));
 	}
