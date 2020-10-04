@@ -185,14 +185,17 @@ int dominant_operator(int p, int q) {
 			break;
 		case '+':
 		    if (flag == 0) {
-				// printf("really?\n");
-				return i;  // if in this case, it must be this one
+				return i;  // if is this case, it must be this one
 			}
 			break;
 		case '-':
+		// it is a little special -- to judge if it is negative
 		    if (flag == 0) {
-				// printf("really?\n");
-				return i;  // if in this case, it must be this one
+				// if is normal .such as '1-1' or '(1+1)-2'
+				if (tokens[i-1].type == NUMBER || tokens[i-1].type ==')') {
+					return i;
+				}
+				// if is negative, just ignore it
 			}
 			break;
 		case '*':
@@ -228,8 +231,13 @@ uint32_t eval(int p, int q) {
 			return -1;
 		}
 	}
+
 	else if (check_parentheses(p ,q) == true) {
 		return eval (p+1, q-1);
+	}
+	// specially deal with the case like '-1'  or '- (1+1)'
+	else if (tokens[0].type == '-') {
+		return 0;
 	}
 	else {
 		int index = dominant_operator(p, q);
