@@ -27,6 +27,7 @@ WP* new_wp(char *str) {
 		assert(0);
 	}
 	// first we build the list, add the node
+	printf("!!!!\n");
 	WP* temp_f = free_;
 	free_ = free_->next;
 	free_->prev = NULL;
