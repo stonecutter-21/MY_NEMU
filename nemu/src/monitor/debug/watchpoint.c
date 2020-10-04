@@ -65,11 +65,7 @@ void free_wp(WP *wp) {
 	if (wp->next != NULL) {
 		temp_w->next->prev = temp_w->prev;
 	}
-
-	
-
-
-
+	wp->prev = NULL;
 }
 
 void print_wp() {
