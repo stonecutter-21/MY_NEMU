@@ -103,7 +103,6 @@ static bool make_token(char *e) {
 					case '*':
 					
 					  tokens[nr_token].type = '*';
-					  printf("here: %c\n",tokens[nr_token].type);
 					  nr_token ++;
 					  break;
 					case '/':
@@ -293,6 +292,7 @@ uint32_t expr(char *e, bool *success) {
 	for (i = 0 ; i < nr_token; i++) {
 		if 
 		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
+			printf ("arrrive here\n");
 			tokens[i].type = DEREF;
 		}
 	}
