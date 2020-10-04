@@ -184,6 +184,11 @@ int dominant_operator(int p, int q) {
 		    flag --;
 			break;
 		case '+':
+		    if (flag == 0) {
+				// printf("really?\n");
+				return i;  // if in this case, it must be this one
+			}
+			break;
 		case '-':
 		    if (flag == 0) {
 				// printf("really?\n");
