@@ -48,6 +48,8 @@ static int cmd_EXPR(char *args);
 
 static int cmd_WATCH(char *args);
 
+static int cmd_delete(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -61,7 +63,7 @@ static struct {
 	{ "x","'   x N EXPR', find the expression EXPR", cmd_scan_mem},
 	{ "p","   Find the value of the expression EXPR", cmd_EXPR},
 	{ "w", "   Suspends program execution when the expression EXPR value changes.", cmd_WATCH},
-
+	{"d", "delete the watch point", cmd_delete},
 	/* TODO: Add more commands */
 
 };
@@ -196,6 +198,13 @@ static int cmd_WATCH(char *args) {
 		printf ("add a watch point: %08x\n",expr(args, &succ, &format));
 		return 0;
 	}
+	return 0;
+}
+
+static int cmd_delete(char *args) {
+	int num;
+	sscanf(args,"%d",&num);
+	delete_point(num);
 	return 0;
 }
 void ui_mainloop() {

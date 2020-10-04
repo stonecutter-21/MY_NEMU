@@ -66,8 +66,15 @@ void print_wp() {
 	}
 }
 
-void delete_point(){
-	free_wp(head);
+void delete_point(int num){
+	WP* node = head;
+	while (node != NULL) {
+		if (node->NO == num) {
+			free_wp(node);
+		}
+		node = node->next;
+	}
+	
 }
 
  
