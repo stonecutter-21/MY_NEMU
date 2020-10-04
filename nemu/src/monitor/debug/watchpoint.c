@@ -75,7 +75,6 @@ void delete_point(int num){
 		}
 		node = node->next;
 	}
-	
 }
 
  
