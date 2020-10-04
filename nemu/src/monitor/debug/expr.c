@@ -262,7 +262,7 @@ uint32_t eval(int p, int q, bool *success) {
 		// printf ("p == %d  ", p);
 		// printf ("q == %d  ", q);
 		char op = tokens[index].type;
-	    //printf ("op == %c\n", op);
+	    printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1, success);
 		//printf ("v1 == %d\n", v1);
@@ -291,7 +291,7 @@ uint32_t expr(char *e, bool *success) {
 	for (i = 0 ; i < nr_token; i++) {
 		if 
 		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
-			//tokens[i].type = DEREF;
+			tokens[i].type = DEREF;
 		}
 	}
 	/* TODO: Insert codes to evaluate the expression. */
