@@ -23,7 +23,7 @@ void init_wp_pool() {
 
 // we should use this wp from 0 to 31
 WP* new_wp() {
-	if (free_ == NULL) {
+/*	if (free_ == NULL) {
 		assert(0);
 	}
 	WP* temp_f = free_;
@@ -33,13 +33,17 @@ WP* new_wp() {
 	head->prev = temp_f;
 	head = temp_f;
 	return head;
+	*/
+return NULL;
 }
 void free_wp(WP *wp) {
+	/*
 	wp->prev->next = wp->next;
 	wp->next->prev = wp->prev;
 	wp->next = free_;
 	free_->prev = wp;
 	wp->prev = NULL;
+	*/
 }
 
 

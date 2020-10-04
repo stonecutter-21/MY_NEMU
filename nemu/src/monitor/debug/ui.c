@@ -184,7 +184,7 @@ static int cmd_WATCH(char *args) {
 		return 0;
 	}
 	else {
-		return 0;
+		
 	}
 	return 0;
 }
