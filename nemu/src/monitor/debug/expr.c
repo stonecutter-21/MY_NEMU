@@ -163,13 +163,20 @@ bool check_parentheses(int p, int q){
 
 // return the index of dominant operator
 int dominant_operator(int p, int q) {
-	int first_m_d = q;  // for the case that there is no '+' or '/'
-	int count = 0; // count the first time of '*' or '/' appears
+	int first_s_s = 0;
+	int first_m_d = q;  
+	int first_and = 0;
+	int first_eq = 0;
+	int count_mut = 0; // count the numbers of '*' or '/' appears
+	int count_and = 0; // count the numbers of "and"
+	int count_eq = 0;  // count the numbers of equal
 	int i;
     int flag = 0; // we think there is no parenthese at first
+	
+
 	for (i = q; i >= p; i--) {
 		// if there is a right parenthese, just escape these until meet a left parenthese
-		char now = tokens[i].type;
+		int now = tokens[i].type;
 		//printf("now == %d\n", now);
 		switch (now)
 		{
@@ -179,14 +186,37 @@ int dominant_operator(int p, int q) {
 		case '(':
 		    flag --;
 			break;
-		case '+':
+		case OR :
 		    if (flag == 0) {
+				return i; // it is the lowest, just return.
+			}
+		    
+		case AND:
+		    if (flag == 0) {
+				count_and++;
+			    if (count_and == 1) {
+				    first_and = i;
+				}
+			break;
+			}
+		    
+		case EQ :
+		     if (flag == 0) {
+				 count_eq++;
+			    if (count_eq == 1) {
+				    first_eq = i;
+			    }
+			    break;
+			}
+		
+		case '+':
+		    if (flag == 0 && first_and == 0) {
 				return i;  // if is this case, it must be this one
 			}
 			break;
 		case '-':
 		// it is a little special -- to judge if it is negative
-		    if (flag == 0) {
+		    if (flag == 0 && first_and == 0) {
 				// if is normal .such as '1-1' or '(1+1)-2'
 				if (tokens[i-1].type == NUMBER || tokens[i-1].type ==')') {
 					return i;
@@ -196,12 +226,10 @@ int dominant_operator(int p, int q) {
 			break;
 		case '*':
 		case '/':
-		    if (flag == 0) {
-			   count ++;
-			   // do the record
-			   if (count == 1) {
+		    if (flag == 0 && first_and == 0) {
+			   count_mut ++;
+			   if (count_mut == 1) {
 				   first_m_d = i;
-			    // printf("first_m_d == %d\n", first_m_d);
 			    }
 			}
 			break;
@@ -209,7 +237,19 @@ int dominant_operator(int p, int q) {
 			break;
 		}
 	}
-	return first_m_d;
+	if (first_and != 0) {
+		return first_and;
+	}
+	else if (first_eq != 0) {
+		return first_eq;
+	}
+	else if (first_s_s != 0) {
+		return first_s_s;
+	}
+	else {
+		return first_m_d;
+	}
+	
 }
 
 uint32_t eval(int p, int q, bool *success) {
@@ -223,6 +263,11 @@ uint32_t eval(int p, int q, bool *success) {
 		if (tokens[p].type == NUMBER) {
 			int answer;
 			sscanf(tokens[p].str,"%d",&answer);
+			return answer;
+		}
+		else if (tokens[p].type == HEX){
+			int answer;
+			sscanf(tokens[p].str,"%x",&answer);
 			return answer;
 		}
 		else {
