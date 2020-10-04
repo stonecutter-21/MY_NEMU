@@ -52,12 +52,12 @@ static struct {
 	int (*handler) (char *);
 } cmd_table [] = {
 	{ "help", "Display informations about all supported commands", cmd_help },
-	{ "c", "Continue the execution of the program", cmd_c },
-	{ "q", "Exit NEMU", cmd_q },
-	{ "si", "The program executes N instructions in a single step and then pauses. When N is not given, the default is 1", cmd_si},
+	{ "c", "   Continue the execution of the program", cmd_c },
+	{ "q", "   Exit NEMU", cmd_q },
+	{ "si", "  The program executes N instructions in a single step and then pauses. When N is not given, the default is 1", cmd_si},
 	{ "info", "'-r',print register state. '-w', print monitor point information", cmd_info},
-	{ "x","'x N EXPR', find the expression EXPR", cmd_scan_mem},
-	{ "p","Find the value of the expression EXPR", cmd_EXPR}
+	{ "x","'   x N EXPR', find the expression EXPR", cmd_scan_mem},
+	{ "p","   Find the value of the expression EXPR", cmd_EXPR}
 
 	/* TODO: Add more commands */
 
@@ -174,6 +174,7 @@ static int cmd_EXPR(char *args) {
 	return 0;
 
 }
+
 
 void ui_mainloop() {
 	while(1) {
