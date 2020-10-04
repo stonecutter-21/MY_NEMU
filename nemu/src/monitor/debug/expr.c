@@ -290,8 +290,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 	int i;
 	for (i = 0 ; i < nr_token; i++) {
-		if (tokens[i].type == '*' && (i == 0 || (tokens[i].type !=NUMBER && tokens[i].type != ')' ))) {
-			printf ("arrive here!\n");
+		if (tokens[i].type == '*' && (i == 0 || (tokens[i-1].type !=NUMBER && tokens[i-1].type != ')' ))) {
 			tokens[i].type = DEREF;
 		}
 	}
