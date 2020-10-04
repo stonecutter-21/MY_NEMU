@@ -27,26 +27,17 @@ WP* new_wp(char *str) {
 		assert(0);
 	} 
 	// first we build the list, add the node
-	printf ("11111\n");
 	WP* temp_f = free_;
-	printf ("11111\n");
 	WP* temp_h = head;
-	printf ("11111\n");
 	// deal with free list
 	free_ = free_->next;
-	printf ("11111\n");
 	free_->prev = NULL;
-	printf ("11111\n");
 	// deal with head list
-	printf ("11111\n");
     head = temp_f;
-	printf ("11111\n");
 	head->next = temp_h;
 	printf ("11111\n");
 	if (head->next) {
-		printf ("11111\n");
 		head->next->prev = head;
-		printf ("11111\n");
 	}
 	
 
