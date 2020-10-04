@@ -375,7 +375,7 @@ uint32_t eval(int p, int q, bool *success) {
 
 
 
-uint32_t expr(char *e, bool *success) {
+uint32_t expr(char *e, bool *success, int* format) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
@@ -385,6 +385,9 @@ uint32_t expr(char *e, bool *success) {
 		if (tokens[i].type == '*' && (i == 0 || (tokens[i-1].type !=NUMBER && tokens[i-1].type != ')' ))) {
 			tokens[i].type = DEREF;
 		}
+	}
+	if (tokens[0].type == REG) {
+		*format = 1;
 	}
 	/* TODO: Insert codes to evaluate the expression. */
 	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
