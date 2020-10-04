@@ -159,13 +159,18 @@ static int cmd_EXPR(char *args) {
 		return 0;
 	}
 	bool success=true;
-	int answer = expr (args, &success);
+	int format = 0; // 0d or 0x. 0d by default.
+	int answer = expr (args, &success, &format);
 	if (!success) {
 		printf ("Error input for an expression. Try again\n");
 	}
-	else {
+	else if (format == 0){
 		printf ("%s = %d\n",args, answer);
 	}
+	else {
+		printf ("%s = 0x%x\n",args, answer);
+	}
+	
 	return 0;
 
 }
