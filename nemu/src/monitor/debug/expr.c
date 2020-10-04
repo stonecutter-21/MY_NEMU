@@ -247,7 +247,10 @@ uint32_t eval(int p, int q, bool *success) {
 	// specially deal with the case like '-1'  or '- (1+1)'
 	else if (p + 1 == q) {
 		if (tokens[p].type == '-') {
-			return - (eval(q,q,success));
+			return -(eval(q,q,success));
+		}
+		else if(tokens[p].type == NOT) {
+			return !(eval(q,q,success));
 		}
 		else {
 			*success = false;
@@ -257,12 +260,15 @@ uint32_t eval(int p, int q, bool *success) {
 	else if (tokens[p].type == '-' && tokens[p+1].type == '(') {
 		return -(eval(p+1,q,success));
 	}
+	else if (tokens[p].type == NOT && tokens[p+1].type == '(') {
+		return !(eval(p+1,q,success));
+	}
 	else {
 		int index = dominant_operator(p, q);
 		//printf ("index == %d\n", index);
 	   // printf ("p == %d  ", p);
 		//printf ("q == %d  ", q);
-		char op = tokens[index].type;
+		int op = tokens[index].type;
 	   // printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1, success);
@@ -275,6 +281,9 @@ uint32_t eval(int p, int q, bool *success) {
 		case '-':   return v1 - v2;
 		case '*':   return v1 * v2;
 		case '/':   return v1 / v2;
+		case EQ :   return v1 == v2;
+		case AND:   return v1 && v2;
+		case OR :   return v1 || v2;
 		default:
 			assert(0);
 		}
