@@ -46,6 +46,8 @@ static int cmd_scan_mem(char *args);
 
 static int cmd_EXPR(char *args);
 
+static int cmd_WATCH(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -57,7 +59,8 @@ static struct {
 	{ "si", "  The program executes N instructions in a single step and then pauses. When N is not given, the default is 1", cmd_si},
 	{ "info", "'-r',print register state. '-w', print monitor point information", cmd_info},
 	{ "x","'   x N EXPR', find the expression EXPR", cmd_scan_mem},
-	{ "p","   Find the value of the expression EXPR", cmd_EXPR}
+	{ "p","   Find the value of the expression EXPR", cmd_EXPR},
+	{ "w", "   Suspends program execution when the expression EXPR value changes.", cmd_WATCH},
 
 	/* TODO: Add more commands */
 
@@ -175,7 +178,13 @@ static int cmd_EXPR(char *args) {
 
 }
 
-
+static int cmd_WATCH(char *args) {
+	if (args == NULL) {
+		printf("Too few arguments. Type \"help\" for more infomations\n");
+		return 0;
+	}
+	return 0;
+}
 void ui_mainloop() {
 	while(1) {
 		char *str = rl_gets();
