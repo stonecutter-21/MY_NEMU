@@ -179,12 +179,17 @@ static int cmd_EXPR(char *args) {
 }
 
 static int cmd_WATCH(char *args) {
+	
 	if (args == NULL) {
 		printf("Too few arguments. Type \"help\" for more infomations\n");
 		return 0;
 	}
 	else {
-		
+		bool succ;
+	    int format;
+	    succ = true;
+        format = 0;
+		return (expr(args, &succ, &format));
 	}
 	return 0;
 }

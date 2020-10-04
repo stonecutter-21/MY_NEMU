@@ -22,16 +22,20 @@ void init_wp_pool() {
 }
 
 // we should use this wp from 0 to 31
-WP* new_wp() {
+WP* new_wp(char *str) {
 	if (free_ == NULL) {
 		assert(0);
 	}
+	// first we build the list, add the node
 	WP* temp_f = free_;
 	free_ = free_->next;
 	free_->prev = NULL;
 	temp_f->next = head;
 	head->prev = temp_f;
 	head = temp_f;
+
+	//then we gave the value to the new node
+	strcpy(head->str,str);
 	return head;
 }
 void free_wp(WP *wp) {
