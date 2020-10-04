@@ -55,8 +55,10 @@ void free_wp(WP *wp) {
 	WP* temp_w = wp;
 	free_ = wp;
 	wp = temp_f->next;
-	if (temp_w == NULL) {
-		head = NULL;
+	// if head == NULL, that means there is nothing to free
+	if (head == NULL) {
+		printf ("Free error! No watch point now.\n");
+		return;
 	}
 	else if(temp_w->prev == NULL){
 		head = temp_w->next;
