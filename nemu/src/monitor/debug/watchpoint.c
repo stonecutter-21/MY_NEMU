@@ -29,7 +29,7 @@ void add_a_watch(char *str) {
 }
 
 // we should use this wp from 0 to 31
-WP* new_wp(char *sarg) {
+WP* new_wp(char *str) {
 	if (free_ == NULL) {
 		assert(0);
 	} 
@@ -47,8 +47,8 @@ WP* new_wp(char *sarg) {
 	}
 	head ->prev = NULL;
 	//then we gave the value to the new node
-	
-	strcpy(head->str,sarg);
+	head->str = " ";
+	strcpy(head->str,str);
 	return head;
 }
 void free_wp(WP *wp) {
