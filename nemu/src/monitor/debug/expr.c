@@ -101,7 +101,9 @@ static bool make_token(char *e) {
 					  nr_token ++;
 					  break;
 					case '*':
+					
 					  tokens[nr_token].type = '*';
+					  printf("here: %c\n",tokens[nr_token].type);
 					  nr_token ++;
 					  break;
 					case '/':
@@ -293,10 +295,6 @@ uint32_t expr(char *e, bool *success) {
 		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
 			tokens[i].type = DEREF;
 		}
-	}
-	
-	for (i = 0 ; i< nr_token; i++) {
-		printf ("%c ", tokens[i].type);
 	}
 	/* TODO: Insert codes to evaluate the expression. */
 	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
