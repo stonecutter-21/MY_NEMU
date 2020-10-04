@@ -26,7 +26,11 @@ void init_wp_pool() {
 
 void add_a_watch(char *str) {
 	new_wp(str);
-	printf("%s\n",head->str);
+	WP* node = head;
+	while (node != NULL) {
+		printf("watch point %d: %s\n", node->NO,node->str);
+		node = node->next;
+	}
 }
 
 // we should use this wp from 0 to 31
