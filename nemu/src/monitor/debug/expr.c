@@ -291,7 +291,7 @@ uint32_t expr(char *e, bool *success) {
 	for (i = 0 ; i < nr_token; i++) {
 		if 
 		(tokens[i].type == '*' && (i == 0 || (tokens[i].type =!NUMBER && tokens[i].type != ')' ))) {
-			tokens[i].type = DEREF;
+			//tokens[i].type = DEREF;
 		}
 	}
 	/* TODO: Insert codes to evaluate the expression. */
