@@ -39,6 +39,7 @@ WP* new_wp(char *str) {
 		head->next->prev = head;
 	}
 	head->str = str;
+	printf ("args==%s", str);
 	//then we gave the value to the new node
 	strcpy(head->str,str);
 	return head;
