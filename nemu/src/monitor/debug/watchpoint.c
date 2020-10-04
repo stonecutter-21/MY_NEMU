@@ -51,11 +51,25 @@ WP* new_wp(char *str) {
 	return head;
 }
 void free_wp(WP *wp) {
-	wp->prev->next = wp->next;
-	wp->next->prev = wp->prev;
-	wp->next = free_;
-	free_->prev = wp;
-	wp->prev = NULL;
+	WP* temp_f = free_;
+	WP* temp_w = wp;
+
+	free_ = wp;
+	wp ->next = temp_f;
+	if (temp_f != NULL) {
+		temp_f ->prev = wp;
+	}
+	if (wp->prev != NULL) {
+		temp_w->prev->next = temp_w->next;
+	}
+	if (wp->next != NULL) {
+		temp_w->next->prev = temp_w->prev;
+	}
+
+	
+
+
+
 }
 
 void print_wp() {
