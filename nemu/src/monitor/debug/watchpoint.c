@@ -46,7 +46,15 @@ void free_wp(WP *wp) {
 	wp->prev = NULL;
 }
 
+void print_wp() {
+	WP* node = head;
+	while (node != NULL) {
+		printf("watch point %d: %s\n", node->NO,node->str);
+		node = node->next;
+	}
+}
 
+ 
 
 
 /* TODO: Implement the functionality of watchpoint */

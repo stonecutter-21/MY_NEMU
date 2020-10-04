@@ -126,6 +126,9 @@ static int cmd_info(char *args) {
 		printf("eip: 0x%x\n",cpu.eip);
 
 	}
+	if (*args == 'w') {
+		print_wp();
+	}
 	return 0;	
 }
 
