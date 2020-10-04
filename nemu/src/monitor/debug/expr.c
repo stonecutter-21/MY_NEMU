@@ -218,6 +218,7 @@ int dominant_operator(int p, int q) {
 
 uint32_t eval(int p, int q) {
 	if (p > q) {
+		printf ("here in p > q?\n");
 		return -1;
 		// it means the expression is wrong...
 	}
@@ -228,6 +229,7 @@ uint32_t eval(int p, int q) {
 			return answer;
 		}
 		else {
+			printf ("here in p == q?\n");
 			return -1;
 		}
 	}
