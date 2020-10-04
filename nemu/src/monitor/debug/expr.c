@@ -294,6 +294,10 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].type = DEREF;
 		}
 	}
+	
+	for (i = 0 ; i< nr_token; i++) {
+		printf ("%c ", tokens[i].type);
+	}
 	/* TODO: Insert codes to evaluate the expression. */
 	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
 	panic("please implement me");
