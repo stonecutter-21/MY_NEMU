@@ -26,24 +26,30 @@ WP* new_wp(char *str) {
 	if (free_ == NULL) {
 		assert(0);
 	}
-	// first we build the list, add the node
-	printf("!!!!\n");
-	WP* temp_f = free_;
-	printf("!!!!\n");
-	free_ = free_->next;
-	printf("!!!!\n");
-	free_->prev = NULL;
-	printf("!!!!\n");
-	temp_f->next = head;
-	printf("!!!!\n");
-	head->prev = temp_f;
-	printf("!!!!\n");
-	head = temp_f;
-	printf("!!!!\n");
+	// if head is NULL , five it a value
+	if (head == NULL) {
+		head = free_;
+		head->next = NULL;
+		head->prev = NULL;
+		free_ = free_->next;
+		free_->prev = NULL;
+		strcpy(head->str,str);
+	    return head;
+	}
+	else {
+		// first we build the list, add the node
+	    WP* temp_f = free_;
+	    free_ = free_->next;
+	    free_->prev = NULL;
+	    temp_f->next = head;
+	    head->prev = temp_f; // here
+	    head = temp_f;
 
-	//then we gave the value to the new node
-	strcpy(head->str,str);
-	return head;
+	    //then we gave the value to the new node
+	    strcpy(head->str,str);
+	    return head;
+	}
+	
 }
 void free_wp(WP *wp) {
 	wp->prev->next = wp->next;
