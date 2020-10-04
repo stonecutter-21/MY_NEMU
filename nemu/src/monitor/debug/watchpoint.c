@@ -27,7 +27,7 @@ WP* new_wp(char *str) {
 		assert(0);
 	}
 	// if head is NULL , five it a value
-	printf ("1\n");
+	
 	if (head == NULL) {
 		
 		head = free_;
