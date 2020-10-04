@@ -23,16 +23,11 @@ void init_wp_pool() {
 
 // we should use this wp from 0 to 31
 WP* new_wp(char *str) {
-	if (head == NULL) {
-		printf ("1\n");
-	}
-	else {
-		printf ("2\n");
-	}
 	if (free_ == NULL) {
 		assert(0);
 	}
 	// if head is NULL , five it a value
+	printf ("1\n");
 	if (head == NULL) {
 		
 		head = free_;
@@ -44,6 +39,7 @@ WP* new_wp(char *str) {
 	    return head;
 	}
 	else {
+		printf ("2\n");
 		// first we build the list, add the node
 	    WP* temp_f = free_;
 	    free_ = free_->next;
