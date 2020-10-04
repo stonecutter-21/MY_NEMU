@@ -93,6 +93,7 @@ void delete_point(int num){
 		
 		if (node->NO == num) {
 			free_wp(node);
+			return;
 		}
 		node = node->next;
 	}
