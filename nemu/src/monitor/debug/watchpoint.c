@@ -39,7 +39,6 @@ WP* new_wp(char *str) {
 	    return head;
 	}
 	else {
-		printf ("2\n");
 		// first we build the list, add the node
 	    WP* temp_f = free_;
 	    free_ = free_->next;
