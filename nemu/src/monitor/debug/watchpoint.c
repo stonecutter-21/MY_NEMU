@@ -26,6 +26,7 @@ void init_wp_pool() {
 
 void add_a_watch(char *str) {
 	new_wp(str);
+	printf("%s\n",head->str);
 }
 
 // we should use this wp from 0 to 31
