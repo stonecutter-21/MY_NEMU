@@ -42,9 +42,10 @@ WP* new_wp(char *str) {
 	// deal with head list
     head = temp_f;
 	head->next = temp_h;
-	if (head->next) {
-		head->next->prev = head;
+	if (temp_h) {
+		temp_h->prev = head;
 	}
+	head ->prev = NULL;
 	head->str = str;
 	//then we gave the value to the new node
 	strcpy(head->str,str);
