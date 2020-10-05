@@ -82,6 +82,10 @@ void free_wp(WP *wp) {
 
 void print_wp() {
 	WP* node = head;
+	if (head == NULL) {
+		printf ("No watch point now!\n");
+		return;
+	}
 	while (node != NULL) {
 		printf("watch point %d: %s\n", node->NO,node->str);
 		node = node->next;
