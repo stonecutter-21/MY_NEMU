@@ -55,23 +55,28 @@ WP* new_wp(char *str) {
 
 void free_wp(WP *wp) {
 	// first we deal with free_
+	printf ("!!\n");
 	WP * temp = free_->next;
 	if (free_ != NULL) {
 		free_->prev = wp;
 	}
 	free_ = wp;
+	printf ("!!\n");
 	// then we deal with head
 	// if the one we want to delete is the head, we should change head
 	if (wp->prev == NULL) {
+		printf ("!!\n");
 		head = head->next;
 		head->prev = NULL;
 	}
 	else {
+		printf ("!!\n");
 		wp->prev->next = wp->next;
 		if (wp->next != NULL) {
 			wp->next->prev = wp->prev;
 		}
 	}
+	printf ("!!\n");
 	// last we deal with wp
 	wp->prev = NULL;
 	wp->next = temp;
