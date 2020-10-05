@@ -29,8 +29,9 @@ void add_a_watch(char *str) {
 
 
 // we should use this wp from 0 to 31
-WP* new_wp(char *str) {
+void new_wp(char *str) {
 	if (free_ == NULL) {
+		printf ("All watch points has been used!\n");
 		assert(0);
 	} 
 	// first we build the list, add the node
@@ -48,7 +49,6 @@ WP* new_wp(char *str) {
 	head ->prev = NULL;
 	//then we gave the value to the new node
 	strcpy(head->str,str);
-	return head;
 }
 
 
