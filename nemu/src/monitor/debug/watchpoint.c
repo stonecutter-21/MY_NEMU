@@ -54,67 +54,28 @@ WP* new_wp(char *str) {
 
 
 void free_wp(WP *wp) {
-	WP* temp_f = free_;
-	WP* temp_w = wp;
-	//first we deal with the free_
-	free_ = wp;
-	wp->next = temp_f;
-	wp ->prev = NULL;
-	if (temp_f != NULL) {
-		temp_f->prev = wp;
+	// first we deal with free_
+	WP * temp = free_->next;
+	if (free_ != NULL) {
+		free_->prev = wp;
 	}
-	// then we deal with the head
-	//if the head one is being delete, we should change the head
-	if (temp_w->prev == NULL) {
+	free_ = wp;
+	// then we deal with head
+	// if the one we want to delete is the head, we should change head
+	if (wp->prev == NULL) {
 		head = head->next;
 		head->prev = NULL;
 	}
-	// now we think the one is not head, which has a prev
 	else {
-		temp_w->prev->next = temp_w->next;
-		if (temp_w->next != NULL) {
-			 temp_w->next->prev = temp_w->prev;
+		wp->prev->next = wp->next;
+		if (wp->next != NULL) {
+			wp->next->prev = wp->prev;
 		}
 	}
+	// last we deal with wp
+	wp->prev = NULL;
+	wp->next = temp;
 }
-/*
-void free_wp(WP *wp) {
-	WP* temp_f = free_;
-	WP* temp_w = wp;
-
-	// if head == NULL, that means there is nothing to free
-	if (head == NULL) {
-		printf ("Free error! No watch point now.\n");
-		return;
-	}
-
-	free_ = wp;
-	wp = temp_f->next;
-	// after add a node ,if there is at least two node in free_ , just put the link to wp
-	if (temp_f!= NULL) {
-		temp_f->prev = wp;
-	}
-	// up to now, we have built connection for free_ and wp
-	
-	// if there is only one node to be free
-	if (head -> next = NULL) {
-		head = NULL;
-	}
-	else {
-		// if it is the first node to be freed
-		if (temp_w->prev == NULL) {
-			head = temp_w->next;
-			head->prev = NULL;
-		}
-		else {
-
-		}
-		
-
-	}
-}
-*/
-
 
 void print_wp() {
 	WP* node = head;
