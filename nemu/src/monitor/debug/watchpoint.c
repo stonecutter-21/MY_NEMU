@@ -56,6 +56,8 @@ int new_wp(char *str) {
 	bool succ = true;
     int format = 1;
 	head->oldval = expr(str,&succ,&format);
+
+	printf ("add watch point %d: %08x\n",head->NO,head->oldval);
 	return 0;
 }
 
