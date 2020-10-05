@@ -201,6 +201,7 @@ static int cmd_WATCH(char *args) {
 				cpu_exec(1);
 				if (spy()){
 					nemu_state = STOP;
+					break;
 				}
 			}
 		}
