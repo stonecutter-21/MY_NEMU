@@ -15,6 +15,8 @@ void init_wp_pool() {
 
 	}
 	wp_pool[NR_WP - 1].next = NULL;
+	wp_pool[NR_WP - 1].NO = NR_WP - 1;
+
 	wp_pool[0].prev = NULL;
 
 	head = NULL;
