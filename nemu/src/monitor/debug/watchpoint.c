@@ -63,10 +63,10 @@ void free_wp(WP *wp) {
 	// then we deal with head
 	// if the one we want to delete is the head, we should change head
 	if (wp->prev == NULL) {
-		printf ("!!\n");
 		head = head->next;
 		printf ("!!\n");
 		head->prev = NULL;
+		printf ("!!\n");
 	}
 	else {
 		wp->prev->next = wp->next;
