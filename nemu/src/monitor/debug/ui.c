@@ -200,7 +200,7 @@ static int cmd_WATCH(char *args) {
 			while (1) {
 				cpu_exec(1);
 				if (spy()){
-					//nemu_state = STOP;
+					nemu_state = STOP;
 					break;
 				}
 			}
