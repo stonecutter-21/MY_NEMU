@@ -39,7 +39,10 @@ void new_wp(char *str) {
 	WP* temp_h = head;
 	// deal with free list
 	free_ = free_->next;
-	free_->prev = NULL;
+	if (free_ != NULL) {
+		free_->prev = NULL;
+	}
+	
 	// deal with head list
     head = temp_f;
 	head->next = temp_h;
