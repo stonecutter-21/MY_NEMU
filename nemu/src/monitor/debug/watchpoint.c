@@ -32,7 +32,7 @@ void add_a_watch(char *str) {
 void new_wp(char *str) {
 	if (free_ == NULL) {
 		printf ("All watch points has been used!\n");
-		assert(0);
+		return;
 	} 
 	// first we build the list, add the node
 	WP* temp_f = free_;
