@@ -59,6 +59,7 @@ void free_wp(WP *wp) {
 	//first we deal with the free_
 	free_ = wp;
 	wp->next = temp_f;
+	wp ->prev = NULL;
 	if (temp_f != NULL) {
 		temp_f->prev = wp;
 	}
