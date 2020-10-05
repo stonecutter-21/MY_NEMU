@@ -57,7 +57,7 @@ int new_wp(char *str) {
     int format = 1;
 	head->oldval = expr(str,&succ,&format);
 
-	printf ("add watch point %d: %08x\n",head->NO,head->oldval);
+	printf ("add watch point %d: exp --%s val --%08x\n",head->NO,head->str,head->oldval);
 	return 0;
 }
 
@@ -97,7 +97,7 @@ void print_wp() {
 		return;
 	}
 	while (node != NULL) {
-		printf("watch point %d: %s\n", node->NO,node->str);
+		printf("watch point %d: exp --%s val --%08x\n", node->NO,node->str, node->oldval);
 		node = node->next;
 	}
 }
