@@ -61,9 +61,10 @@ int new_wp(char *str) {
 
 void free_wp(WP *wp) {
 	// first we deal with free_
-	WP * temp = free_->next;
+	WP * temp = NULL;
 	if (free_ != NULL) {
 		free_->prev = wp;
+		temp = free_->next;
 	}
 	free_ = wp;
 	// then we deal with head
