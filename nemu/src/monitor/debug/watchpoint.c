@@ -65,8 +65,9 @@ void free_wp(WP *wp) {
 	if (wp->prev == NULL) {
 		head = head->next;
 		printf ("!!\n");
-		head->prev = NULL;
-		printf ("!!\n");
+		if (head != NULL) {
+			head->prev = NULL;
+		}
 	}
 	else {
 		wp->prev->next = wp->next;
@@ -74,7 +75,6 @@ void free_wp(WP *wp) {
 			wp->next->prev = wp->prev;
 		}
 	}
-	printf ("!!\n");
 	// last we deal with wp
 	wp->prev = NULL;
 	wp->next = temp;
@@ -98,6 +98,7 @@ void delete_point(int num){
 		}
 		node = node->next;
 	}
+	printf ("There is no watch point %d being used\n",num);
 }
 
  
