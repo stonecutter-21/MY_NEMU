@@ -8,11 +8,12 @@ typedef struct watchpoint {
 	struct watchpoint *next; // next node
 	struct watchpoint *prev; //before node
 	char str[32];  // hold the expression
-
+	int oldval;
 	/* TODO: Add more members if necessary */
 
 
 } WP;
+bool spy();
 int add_a_watch(char *str);
 int new_wp(char *str);
 void free_wp(WP *wp);

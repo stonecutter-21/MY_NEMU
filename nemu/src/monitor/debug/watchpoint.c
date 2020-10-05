@@ -12,7 +12,6 @@ void init_wp_pool() {
 		wp_pool[i].NO = i;
 		wp_pool[i].next = &wp_pool[i + 1];
 		wp_pool[i+1].prev = &wp_pool[i];
-
 	}
 	wp_pool[NR_WP - 1].next = NULL;
 	wp_pool[NR_WP - 1].NO = NR_WP - 1;
@@ -54,6 +53,9 @@ int new_wp(char *str) {
 	head ->prev = NULL;
 	//then we gave the value to the new node
 	strcpy(head->str,str);
+	bool succ = true;
+    int format = 1;
+	head->oldval = expr(str,&succ,&format);
 	return 0;
 }
 
@@ -71,7 +73,6 @@ void free_wp(WP *wp) {
 	// if the one we want to delete is the head, we should change head
 	if (wp->prev == NULL) {
 		head = head->next;
-		printf ("!!\n");
 		if (head != NULL) {
 			head->prev = NULL;
 		}
@@ -112,8 +113,35 @@ void delete_point(int num){
 	printf ("There is no watch point %d being used\n",num);
 }
 
- 
 
+bool ischange(WP* node){
+	 bool succ = true;
+     int format = 1;
+	 int answer = expr(node->str,&succ,&format);
+	 if (answer == node->oldval) {
+		return false;
+	 }
+	    
+	else {
+		node->oldval = answer;
+		return true;
+	}
+ }
+
+bool spy(){
+	bool result = false;
+	WP* node = head;
+	while (node != NULL) {
+		if (ischange(node)) {
+			printf("The value of watch point %d has changed\n",node->NO);
+			result = true;
+		}
+		node = node->next;
+	}
+	return result;
+}
+ 
+ 
 
 /* TODO: Implement the functionality of watchpoint */
 

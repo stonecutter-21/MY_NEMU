@@ -195,7 +195,14 @@ static int cmd_WATCH(char *args) {
 	    succ = true;
         format = 1;
 		if (add_a_watch(args) == 0) {
-			printf ("add a watch point: %08x\n",expr(args, &succ, &format));
+			int answer = expr(args, &succ, &format);
+			printf ("add a watch point: %08x\n",answer);
+			while (1) {
+				cpu_exec(1);
+				if (spy()){
+					nemu_state = STOP;
+				}
+			}
 		}
 		return 0;
 	}
