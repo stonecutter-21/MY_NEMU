@@ -22,17 +22,17 @@ void init_wp_pool() {
 }
 
 
-void add_a_watch(char *str) {
-	new_wp(str);
+int add_a_watch(char *str) {
+	return new_wp(str);
 }
 
 
 
 // we should use this wp from 0 to 31
-void new_wp(char *str) {
+int new_wp(char *str) {
 	if (free_ == NULL) {
 		printf ("All watch points has been used!\n");
-		return;
+		return -1;
 	} 
 	// first we build the list, add the node
 	WP* temp_f = free_;
@@ -52,6 +52,7 @@ void new_wp(char *str) {
 	head ->prev = NULL;
 	//then we gave the value to the new node
 	strcpy(head->str,str);
+	return 0;
 }
 
 

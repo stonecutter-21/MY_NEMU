@@ -194,8 +194,9 @@ static int cmd_WATCH(char *args) {
 	    int format;
 	    succ = true;
         format = 1;
-		add_a_watch(args);
-		printf ("add a watch point: %08x\n",expr(args, &succ, &format));
+		if (add_a_watch(args) == 0) {
+			printf ("add a watch point: %08x\n",expr(args, &succ, &format));
+		}
 		return 0;
 	}
 	return 0;
