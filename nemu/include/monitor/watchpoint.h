@@ -11,9 +11,8 @@ typedef struct watchpoint {
 	int oldval;
 	/* TODO: Add more members if necessary */
 
-
 } WP;
-bool spy();
+bool spy_changed();
 int add_a_watch(char *str);
 int new_wp(char *str);
 void free_wp(WP *wp);

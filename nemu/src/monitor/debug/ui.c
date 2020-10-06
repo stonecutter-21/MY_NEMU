@@ -195,16 +195,8 @@ static int cmd_WATCH(char *args) {
 	    succ = true;
         format = 1;
 		if (add_a_watch(args) == 0) {
-			int answer = expr(args, &succ, &format);
-			answer = 0;
-			/*while (1) {
-				cpu_exec(1);
-				if (spy()){
-					nemu_state = STOP;
-					break;
-				}
-			}
-			*/
+			return 0;
+			//int answer = expr(args, &succ, &format);
 		}
 		return 0;
 	}

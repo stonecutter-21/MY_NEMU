@@ -130,7 +130,7 @@ bool ischange(WP* node){
 	}
  }
 
-bool spy(){
+bool spy_changed(){
 	bool result = false;
 	WP* node = head;
 	while (node != NULL) {
