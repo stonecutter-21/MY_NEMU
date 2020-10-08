@@ -386,6 +386,75 @@ int help_find_reg(char *arg, bool *success) {
 }
 
 
+
+
+
+uint32_t eval(int p, int q, bool *success) {
+	if (p > q) {
+		//printf ("here in p > q?\n");
+		*success = false;
+		return -1;
+		// it means the expression is wrong...
+	}
+	else if (p == q) {
+		if (tokens[p].type == NUMBER) {
+			int answer;
+			sscanf(tokens[p].str,"%d",&answer);
+			return answer;
+		}
+		else if (tokens[p].type == HEX){
+			int answer;
+			sscanf(tokens[p].str,"%x",&answer);
+			return answer;
+		}
+		else if (tokens[p].type == REG){
+
+			return help_find_reg(tokens[p].str, success);
+		}
+		else {
+			// printf ("here in p == q?\n");
+			*success = false;
+			return -1;
+		}
+	}
+	if (check_parentheses(p ,q) == true) {
+
+		return eval (p+1, q-1, success);
+	}
+	if (tokens[p].type == NEG) {
+		return -eval(p+1,q,success);
+	}
+	if (tokens[p].type == DEREF) {
+		return swaddr_read( eval(q,q,success), 4);
+	}
+	int index = dominant_operator(p, q);
+	//printf ("index == %d\n", index);
+	//printf ("p == %d  ", p);
+	//printf ("q == %d  ", q);
+	int op = tokens[index].type;
+	//printf ("op == %c\n", op);
+
+	uint32_t v1 = eval(p, index-1, success);
+	//printf ("v1 == %d\n", v1);
+	uint32_t v2 = eval(index+1, q, success);
+	//printf ("v2 == %d\n", v2);
+	switch (op)
+	{
+	case '+':   return v1 + v2;
+	case '-':   return v1 - v2;
+	case '*':   return v1 * v2;
+	case '/':   return v1 / v2;
+	case EQ :   return v1 == v2;
+	case AND:   return v1 && v2;
+	case OR :   return v1 || v2;
+	default:
+		assert(0);
+	}
+
+}
+
+/*
+old code...
 uint32_t eval(int p, int q, bool *success) {
 	if (p > q) {
 		//printf ("here in p > q?\n");
@@ -471,7 +540,7 @@ uint32_t eval(int p, int q, bool *success) {
 		}
 	}
 }
-
+*/
 
 uint32_t expr(char *e, bool *success, int* format) {
 	if(!make_token(e)) {
