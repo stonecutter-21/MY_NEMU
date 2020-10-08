@@ -248,11 +248,8 @@ int dominant_operator(int p, int q) {
 			return last_and;
 		if (last_eq != -1 || last_neq != -1) 
 			return last_neq > last_eq ? last_neq : last_eq;
-		if (last_plus_sub != -1) {
+		if (last_plus_sub != -1) 
 			return last_plus_sub;
-		}
-
-			
 		if (last_mut_div != -1) 
 			return last_mut_div;
 		if (last_neg != -1 || last_def != -1)
