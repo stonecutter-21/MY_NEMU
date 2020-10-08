@@ -248,8 +248,12 @@ int dominant_operator(int p, int q) {
 			return last_and;
 		if (last_eq != 0 || last_neq != 0) 
 			return last_neq > last_eq ? last_neq : last_eq;
-		if (last_plus_sub != -1) 
+		if (last_plus_sub != -1) {
+			printf ("arrive here\n");
 			return last_plus_sub;
+		}
+
+			
 		if (last_mut_div != -1) 
 			return last_mut_div;
 		if (last_neg != -1 || last_def != -1)
@@ -448,10 +452,10 @@ uint32_t eval(int p, int q, bool *success) {
 	else {
 		int index = dominant_operator(p, q);
 		//printf ("index == %d\n", index);
-	    printf ("p == %d  ", p);
-		printf ("q == %d  ", q);
+	    //printf ("p == %d  ", p);
+		//printf ("q == %d  ", q);
 		int op = tokens[index].type;
-	    printf ("op == %c\n", op);
+	    //printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1, success);
 		//printf ("v1 == %d\n", v1);
