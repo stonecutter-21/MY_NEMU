@@ -236,7 +236,11 @@ int dominant_operator(int p, int q) {
 					last_neq  = i;
 					break;
 				}
-				
+			case EQ:
+				if(flag == 0) {
+					last_eq  = i;
+					break;
+				}
 			default:
 				break;
 		}
@@ -428,7 +432,7 @@ uint32_t eval(int p, int q, bool *success) {
 		return swaddr_read( eval(q,q,success), 4);
 	}
 	int index = dominant_operator(p, q);
-	printf ("index == %d\n", index);
+	//printf ("index == %d\n", index);
 	//printf ("p == %d  ", p);
 	//printf ("q == %d  ", q);
 	int op = tokens[index].type;
