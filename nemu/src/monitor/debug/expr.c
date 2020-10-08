@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NEQ, AND, OR, NOT, NUMBER, HEX,REG, DEREF,
+	NOTYPE = 256, EQ, NEQ, AND, OR, NOT, NUMBER, HEX,REG, DEREF, NEG,
 	/* TODO: Add more token types */
 };
 
@@ -118,6 +118,7 @@ static bool make_token(char *e) {
 					case OR :
 					case NOT:
 					case DEREF:
+					case NEG:
 					case EQ :
 					   tokens[nr_token].type = rules[i].token_type;
 					   nr_token ++;
@@ -168,7 +169,96 @@ bool check_parentheses(int p, int q){
 	}
 }
 
+
+int dominant_operator(int p, int q) {
+	// from head to tail, iterate the p->q
+	// method: we first find the low level as the dominant operator
+	int i;
+	int flag = 0; // count if there is a "()""
+	int last_plus_sub = -1;
+	int last_mut_div = -1;
+	int last_and = -1;
+	int last_or = -1;
+	int last_eq = -1;
+	int last_def = -1;
+	int last_neg = -1;
+	int last_not = -1;
+	int last_neq = -1;
+	for (i = p; i <= q; i++) {
+		int now = tokens[i].type;
+		switch (now)
+		{
+			case '(':
+				flag++;
+				break;
+			case ')':
+				flag--;
+				break;
+			case '+':
+			case '-':
+				if(flag == 0) {
+					last_plus_sub  = i;
+					break;
+				}
+			case '*':
+			case '/':
+				if(flag == 0) {
+					last_mut_div  = i;
+					break;
+				}
+			case AND:
+				if(flag == 0) {
+					last_and  = i;
+					break;
+				}
+			case OR:
+				if(flag == 0) {
+					last_or  = i;
+					break;
+				}
+			case NEG:
+				if(flag == 0) {
+					last_neg  = i;
+					break;
+				}
+			case DEREF:
+				if(flag == 0) {
+					last_def  = i;
+					break;
+				}
+			case NOT:
+				if(flag == 0) {
+					last_not  = i;
+					break;
+				}
+			case NEQ:
+				if(flag == 0) {
+					last_neq  = i;
+					break;
+				}
+				
+			default:
+				break;
+		}
+	}
+		// now we rank these operators
+		if (last_or != -1)	
+			return last_or;
+		if (last_and != -1)	
+			return last_and;
+		if (last_eq != 0 || last_neq != 0) 
+			return last_neq > last_eq ? last_neq : last_eq;
+		if (last_plus_sub != -1) 
+			return last_plus_sub;
+		if (last_mut_div != -1) 
+			return last_mut_div;
+		if (last_neg != -1 || last_def != -1)
+			return last_neg > last_def ? last_neg : last_def;
+		return -1;
+}
 // return the index of dominant operator
+/*
+// old codes...
 int dominant_operator(int p, int q) {
 	int first_s_s = 0;
 	int first_m_d = q;  
@@ -258,7 +348,7 @@ int dominant_operator(int p, int q) {
 	}
 	
 }
-
+*/
 
 
 int help_find_reg(char *arg, bool *success) {
@@ -295,6 +385,7 @@ int help_find_reg(char *arg, bool *success) {
 	}
 }
 
+
 uint32_t eval(int p, int q, bool *success) {
 	if (p > q) {
 		//printf ("here in p > q?\n");
@@ -330,7 +421,7 @@ uint32_t eval(int p, int q, bool *success) {
 	}
 	// specially deal with the case like '-1'  or '- (1+1)'
 	else if (p + 1 == q) {
-		if (tokens[p].type == '-') {
+		if (tokens[p].type == NEG) {
 			return -(eval(q,q,success));
 		}
 		else if(tokens[p].type == NOT) {
@@ -345,7 +436,7 @@ uint32_t eval(int p, int q, bool *success) {
 		}
 	}
 
-	else if (tokens[p].type == '-' && tokens[p+1].type == '(' && tokens[q].type == ')') {
+	else if (tokens[p].type == NEG && tokens[p+1].type == '(' && tokens[q].type == ')') {
 		return -(eval(p+1,q,success));
 	}
 	else if (tokens[p].type == NOT && tokens[p+1].type == '('&& tokens[q].type == ')') {
@@ -382,7 +473,6 @@ uint32_t eval(int p, int q, bool *success) {
 }
 
 
-
 uint32_t expr(char *e, bool *success, int* format) {
 	if(!make_token(e)) {
 		*success = false;
@@ -392,6 +482,9 @@ uint32_t expr(char *e, bool *success, int* format) {
 	for (i = 0 ; i < nr_token; i++) {
 		if (tokens[i].type == '*' && (i == 0 || (tokens[i-1].type !=NUMBER && tokens[i-1].type != ')' ))) {
 			tokens[i].type = DEREF;
+		}
+		if (tokens[i].type == '-' && (i == 0 || (tokens[i-1].type !=NUMBER && tokens[i-1].type != ')' ))) {
+			tokens[i].type = NEG;
 		}
 	}
 	if (tokens[0].type == REG) {
