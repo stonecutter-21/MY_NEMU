@@ -196,6 +196,7 @@ int dominant_operator(int p, int q) {
 				break;
 			case '+':
 			case '-':
+			printf ("arrive here...\n");
 				if(flag == 0) {
 					last_plus_sub  = i;
 					break;
@@ -447,7 +448,7 @@ uint32_t eval(int p, int q, bool *success) {
 	}
 	else {
 		int index = dominant_operator(p, q);
-		printf ("index == %d\n", index);
+		//printf ("index == %d\n", index);
 	   // printf ("p == %d  ", p);
 		//printf ("q == %d  ", q);
 		int op = tokens[index].type;
