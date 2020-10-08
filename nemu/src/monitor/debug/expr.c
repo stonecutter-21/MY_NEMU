@@ -204,6 +204,7 @@ int dominant_operator(int p, int q) {
 			case '/':
 				if(flag == 0) {
 					last_mut_div  = i;
+					printf ("'+' == %d\n",last_mut_div);
 					break;
 				}
 			case AND:
@@ -249,7 +250,6 @@ int dominant_operator(int p, int q) {
 		if (last_eq != 0 || last_neq != 0) 
 			return last_neq > last_eq ? last_neq : last_eq;
 		if (last_plus_sub != -1) {
-			printf ("arrive here\n");
 			return last_plus_sub;
 		}
 
