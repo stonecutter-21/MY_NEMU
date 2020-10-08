@@ -186,6 +186,7 @@ int dominant_operator(int p, int q) {
 	int last_neq = -1;
 	for (i = p; i <= q; i++) {
 		int now = tokens[i].type;
+		printf ("now == %d\n",now);
 		switch (now)
 		{   
 			case '(':
@@ -204,7 +205,6 @@ int dominant_operator(int p, int q) {
 			case '/':
 				if(flag == 0) {
 					last_mut_div  = i;
-					printf ("'+' == %d\n",last_mut_div);
 					break;
 				}
 			case AND:
