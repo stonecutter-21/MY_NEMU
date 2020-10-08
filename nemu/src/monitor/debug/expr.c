@@ -187,7 +187,8 @@ int dominant_operator(int p, int q) {
 	for (i = p; i <= q; i++) {
 		int now = tokens[i].type;
 		switch (now)
-		{
+		{   case NUMBER:
+				break;
 			case '(':
 				flag++;
 				break;
