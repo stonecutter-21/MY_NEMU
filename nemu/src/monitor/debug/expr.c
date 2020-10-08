@@ -257,7 +257,7 @@ int dominant_operator(int p, int q) {
 			return last_mut_div;
 		if (last_neg != -1 || last_def != -1)
 			return last_neg > last_def ? last_neg : last_def;
-		return -1;
+		return 0;
 }
 // return the index of dominant operator
 /*
@@ -457,9 +457,9 @@ uint32_t eval(int p, int q, bool *success) {
 	    //printf ("op == %c\n", op);
 
 		uint32_t v1 = eval(p, index-1, success);
-		printf ("v1 == %d\n", v1);
+		//printf ("v1 == %d\n", v1);
 		uint32_t v2 = eval(index+1, q, success);
-		printf ("v2 == %d\n", v2);
+		//printf ("v2 == %d\n", v2);
 		switch (op)
 		{
 		case '+':   return v1 + v2;
