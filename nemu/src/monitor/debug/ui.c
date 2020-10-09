@@ -152,7 +152,6 @@ static int cmd_scan_mem(char *args) {
 	bool success = 1;
 	int format = 1;
 	EX_temp = expr(arg2, &success, &format);
-	//sscanf(arg2,"%x",&EX_temp);
 	int i ;
 	uint32_t addr;
 	for(i = 0; i< N_temp*4; i+=4) {
