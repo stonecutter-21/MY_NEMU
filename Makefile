@@ -63,6 +63,9 @@ run: $(nemu_BIN) $(USERPROG) entry
 	$(call git_commit, "run")
 	$(nemu_BIN) $(USERPROG)
 
+count: $(nemu_BIN) entry
+	   $(find . -name "*[.h|.cpp]" | xargs wc -l)
+
 gdb: $(nemu_BIN) $(USERPROG) entry
 	$(call git_commit, "gdb")
 	gdb -s $(nemu_BIN) --args $(nemu_BIN) $(USERPROG)
