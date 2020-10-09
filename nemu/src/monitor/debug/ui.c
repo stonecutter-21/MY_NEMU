@@ -117,15 +117,15 @@ static int cmd_info(char *args) {
 		return 0;
 	}
 	if (*arg == 'r'){
-		printf("eax: 0x%x\n",cpu.eax);
-	    printf("ecx: 0x%x\n",cpu.ecx);
-	    printf("edx: 0x%x\n",cpu.edx);
-	    printf("ebx: 0x%x\n",cpu.ebx);
-	    printf("esp: 0x%x\n",cpu.esp);
-	    printf("ebp: 0x%x\n",cpu.ebp);
-	    printf("esi: 0x%x\n",cpu.esi);
-	    printf("edi: 0x%x\n",cpu.edi);
-		printf("eip: 0x%x\n",cpu.eip);
+		printf("eax: 0x%08x\n",cpu.eax);
+	    printf("ecx: 0x%08x\n",cpu.ecx);
+	    printf("edx: 0x%08x\n",cpu.edx);
+	    printf("ebx: 0x%08x\n",cpu.ebx);
+	    printf("esp: 0x%08x\n",cpu.esp);
+	    printf("ebp: 0x%08x\n",cpu.ebp);
+	    printf("esi: 0x%08x\n",cpu.esi);
+	    printf("edi: 0x%08x\n",cpu.edi);
+		printf("eip: 0x%08x\n",cpu.eip);
 
 	}
 	if (*args == 'w') {
@@ -207,6 +207,10 @@ static int cmd_WATCH(char *args) {
 }
 
 static int cmd_delete(char *args) {
+	if (strcmp(args,"a") == 0) {
+		delete_all();
+		return 0;
+	}
 	int num;
 	sscanf(args,"%d",&num);
 	delete_point(num);

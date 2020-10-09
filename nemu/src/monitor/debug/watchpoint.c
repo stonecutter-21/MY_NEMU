@@ -127,6 +127,14 @@ void delete_point(int num){
 	printf ("Watch point %02d is not being used\n",num);
 }
 
+void delete_all() {
+	WP* node = head;
+	while (node != NULL) {
+		free_wp(node);
+		node = node->next;
+	}
+}
+
 
 bool ischange(WP* node){
 	 bool succ = true;

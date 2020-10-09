@@ -19,4 +19,5 @@ void free_wp(WP *wp);
 void print_wp();
 void print_free();
 void delete_point(int num);
+void delete_all();
 #endif
