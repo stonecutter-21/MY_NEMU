@@ -265,37 +265,18 @@ int dominant_operator(int p, int q) {
 
 
 int help_find_reg(char *arg, bool *success) {
-	if (strcmp(arg,"$eax") == 0 ) {
-		return cpu.eax;
-	}
-	else if (strcmp(arg,"$ebp") == 0) {
-		return cpu.ebp;
-	}
-	else if (strcmp(arg,"$ebx") == 0) {
-		return cpu.ebx;
-	}
-	else if (strcmp(arg,"$ecx") == 0) {
-		return cpu.ecx;
-	}
-	else if (strcmp(arg,"$edi") == 0) {
-		return cpu.edi;
-	}
-	else if (strcmp(arg,"$edx") == 0) {
-		return cpu.edx;
-	}
-	else if (strcmp(arg,"$eip") == 0) {
-		return cpu.eip;
-	}
-	else if (strcmp(arg,"$esi") == 0) {
-		return cpu.esi;
-	}
-	else if (strcmp(arg,"$esp") == 0) {
-		return cpu.esp;
-	}
-	else {
-		*success = false;
-		return -1;
-	}
+	if (strcmp(arg,"$eax") == 0 ) return cpu.eax;
+	if (strcmp(arg,"$ebp") == 0)  return cpu.ebp;
+	if (strcmp(arg,"$ebx") == 0)  return cpu.ebx;
+    if (strcmp(arg,"$ecx") == 0)  return cpu.ecx;
+	if (strcmp(arg,"$edi") == 0)  return cpu.edi;
+	if (strcmp(arg,"$edx") == 0)  return cpu.edx;
+	if (strcmp(arg,"$eip") == 0)  return cpu.eip;
+	if (strcmp(arg,"$esi") == 0)  return cpu.esi;
+    if (strcmp(arg,"$esp") == 0)  return cpu.esp;
+    printf("here? in  help find bugs\n");
+	*success = false;
+	return -1;
 }
 
 
