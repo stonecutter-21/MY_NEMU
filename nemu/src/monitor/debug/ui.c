@@ -60,7 +60,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "[N] The program executes N instructions in a single step and then pauses", cmd_si},
 	{ "info", "-r,print register state. -w, print monitor point information", cmd_info},
-	{ "x","'x N EXPR', find the expression EXPR", cmd_scan_mem},
+	{ "x","N EXPR find the expression EXPR", cmd_scan_mem},
 	{ "p","EXPR Compute the value of the expression EXPR", cmd_EXPR},
 	{ "w", "Suspends program execution when the expression EXPR value changes.", cmd_WATCH},
 	{ "d", "[N] Delete the watch point", cmd_delete},
