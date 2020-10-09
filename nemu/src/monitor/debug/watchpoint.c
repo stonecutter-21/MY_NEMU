@@ -32,7 +32,7 @@ int add_a_watch(char *str) {
 // we should use this wp from 0 to 31
 int new_wp(char *str) {
 	if (free_ == NULL) {
-		printf ("All watch points has been used!\n");
+		printf ("All watch points have been used!\n");
 		return -1;
 	} 
 	// first we build the list, add the node
@@ -112,7 +112,7 @@ void delete_point(int num){
 		}
 		node = node->next;
 	}
-	printf ("There is no watch point %d being used\n",num);
+	printf ("Watch point %d is not being used\n",num);
 }
 
 
