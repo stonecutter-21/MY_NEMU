@@ -120,6 +120,7 @@ static bool make_token(char *e) {
 					case DEREF:
 					case NEG:
 					case EQ :
+					case NEQ:
 					   tokens[nr_token].type = rules[i].token_type;
 					   nr_token ++;
 				}
@@ -169,7 +170,7 @@ bool check_parentheses(int p, int q){
 	}
 }
 
-
+// return the index of dominant operator
 int dominant_operator(int p, int q) {
 	// from head to tail, iterate the p->q
 	// method: we first find the low level as the dominant operator
@@ -260,99 +261,7 @@ int dominant_operator(int p, int q) {
 			return last_neg > last_def ? last_neg : last_def;
 		return 0;
 }
-// return the index of dominant operator
-/*
-// old codes...
-int dominant_operator(int p, int q) {
-	int first_s_s = 0;
-	int first_m_d = q;  
-	int first_and = 0;
-	int first_eq = 0;
-	int count_mut = 0; // count the numbers of '*' or '/' appears
-	int count_and = 0; // count the numbers of "and"
-	int count_eq = 0;  // count the numbers of equal
-	int i;
-    int flag = 0; // we think there is no parenthese at first
-	
 
-	for (i = q; i >= p; i--) {
-		// if there is a right parenthese, just escape these until meet a left parenthese
-		int now = tokens[i].type;
-		//printf("now == %d\n", now);
-		switch (now)
-		{
-		case ')':
-		    flag ++;
-			break;
-		case '(':
-		    flag --;
-			break;
-		case OR :
-		    if (flag == 0) {
-				return i; // it is the lowest, just return.
-			}
-		    
-		case AND:
-		    if (flag == 0) {
-				count_and++;
-			    if (count_and == 1) {
-				    first_and = i;
-				}
-			break;
-			}
-		    
-		case EQ :
-		     if (flag == 0) {
-				 count_eq++;
-			    if (count_eq == 1) {
-				    first_eq = i;
-			    }
-			    break;
-			}
-		
-		case '+':
-		    if (flag == 0 && first_and == 0) {
-				return i;  // if is this case, it must be this one
-			}
-			break;
-		case '-':
-		// it is a little special -- to judge if it is negative
-		    if (flag == 0 && first_and == 0) {
-				// if is normal .such as '1-1' or '(1+1)-2'
-				if (tokens[i-1].type == NUMBER || tokens[i-1].type ==')') {
-					return i;
-				}
-				// if is negative, just ignore it
-			}
-			break;
-		case '*':
-		case '/':
-		    if (flag == 0 && first_and == 0) {
-			   count_mut ++;
-			   if (count_mut == 1) {
-				   first_m_d = i;
-			    }
-			}
-			break;
-		default:
-			break;
-		}
-	}
-	if (first_and != 0) {
-		return first_and;
-	}
-	else if (first_eq != 0) {
-		return first_eq;
-	}
-	else if (first_s_s != 0) {
-		return first_s_s;
-	}
-	else {
-		return first_m_d;
-	}
-	
-}
-*/
 
 
 int help_find_reg(char *arg, bool *success) {
