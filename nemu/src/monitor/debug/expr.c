@@ -318,7 +318,7 @@ uint32_t eval(int p, int q, bool *success) {
 		return -eval(p+1,q,success);
 	}
 	if (tokens[p].type == DEREF) {
-		return swaddr_read( eval(q,q,success), 4);
+		return swaddr_read( eval(p+1,q,success), 4);
 	}
 	if (tokens[p].type == NOT) {
 		return !(eval(q,q,success));
