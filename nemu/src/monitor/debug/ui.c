@@ -207,7 +207,7 @@ static int cmd_WATCH(char *args) {
 }
 
 static int cmd_delete(char *args) {
-	if (strcmp(args,"a") == 0) {
+	if (strcmp(args,"all") == 0) {
 		delete_all();
 		return 0;
 	}
