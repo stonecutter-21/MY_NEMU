@@ -130,7 +130,7 @@ static int cmd_info(char *args) {
 	}
 	if (*args == 'w') {
 		print_wp();
-		print_free();
+	 // print_free();
 	}
 	return 0;	
 }
