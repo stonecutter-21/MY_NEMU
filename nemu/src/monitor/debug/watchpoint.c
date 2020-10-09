@@ -97,7 +97,7 @@ void print_wp() {
 		return;
 	}
 	while (node != NULL) {
-		printf("watch point %d: expr --%s val --0x%08x\n", node->NO,node->str, node->oldval);
+		printf("watch point %d: expression--%s val--0x%08x\n", node->NO,node->str, node->oldval);
 		node = node->next;
 	}
 }

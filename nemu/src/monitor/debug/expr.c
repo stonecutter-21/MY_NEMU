@@ -274,7 +274,6 @@ int help_find_reg(char *arg, bool *success) {
 	if (strcmp(arg,"$eip") == 0)  return cpu.eip;
 	if (strcmp(arg,"$esi") == 0)  return cpu.esi;
     if (strcmp(arg,"$esp") == 0)  return cpu.esp;
-    printf("here? in  help find bugs\n");
 	*success = false;
 	return -1;
 }
