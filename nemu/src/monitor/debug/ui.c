@@ -59,7 +59,7 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "[N] The program executes N instructions in a single step and then pauses", cmd_si},
-	{ "info", "-r,print register state. -w, print monitor point information", cmd_info},
+	{ "info", "-r print register state. -w, print monitor point information", cmd_info},
 	{ "x","N EXPR find the expression EXPR", cmd_scan_mem},
 	{ "p","EXPR Compute the value of the expression EXPR", cmd_EXPR},
 	{ "w", "Suspends program execution when the expression EXPR value changes.", cmd_WATCH},
@@ -138,7 +138,7 @@ static int cmd_scan_mem(char *args) {
 	char *arg1 = strtok(NULL, " "); // first arg -- number 
 	char *arg2 = strtok (NULL, " "); // second arg -- addr
 	uint32_t N_temp;  // the 'N'
-	uint32_t EX_temp;  // the 'N'
+	uint32_t EX_temp;  // the 'EXPR'
 
 	if (arg1 == NULL){
 		printf("Too few arguments. Type \"help\" for more infomations\n");
@@ -149,7 +149,10 @@ static int cmd_scan_mem(char *args) {
 		return 0;
 	}
 	sscanf(arg1,"%d",&N_temp);
-	sscanf(arg2,"%x",&EX_temp);
+	bool success = 1;
+	int format = 1;
+	EX_temp = expr(arg2, &success, &format);
+	//sscanf(arg2,"%x",&EX_temp);
 	int i ;
 	uint32_t addr;
 	for(i = 0; i< N_temp*4; i+=4) {
