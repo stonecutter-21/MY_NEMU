@@ -73,3 +73,5 @@ test: $(nemu_BIN) $(testcase_BIN) entry
 
 submit: clean
 	cd .. && zip -r $(STU_ID).zip $(shell pwd | grep -o '[^/]*$$')
+
+count:  $(shell find . -name "*[.h|.cpp]" | xargs wc -l)
