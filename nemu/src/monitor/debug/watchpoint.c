@@ -57,7 +57,7 @@ int new_wp(char *str) {
     int format = 1;
 	head->oldval = expr(str,&succ,&format);
 
-	printf ("add watch point %2d: expression--%s val--0x%08x\n",head->NO,head->str,head->oldval);
+	printf ("add watch point %02d: expression--%s val--0x%08x\n",head->NO,head->str,head->oldval);
 	return 0;
 }
 
