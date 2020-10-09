@@ -129,9 +129,11 @@ void delete_point(int num){
 
 void delete_all() {
 	WP* node = head;
+	WP* next_one = NULL;
 	while (node != NULL) {
+		next_one = node->next;
 		free_wp(node);
-		node = node->next;
+		node = next_one;
 	}
 }
 
