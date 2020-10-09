@@ -364,6 +364,7 @@ uint32_t eval(int p, int q, bool *success) {
 	case EQ :   return v1 == v2;
 	case AND:   return v1 && v2;
 	case OR :   return v1 || v2;
+	case NEQ:   return v1 != v2;
 	default:
 		assert(0);
 	}
