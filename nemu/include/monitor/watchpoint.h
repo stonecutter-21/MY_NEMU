@@ -17,5 +17,6 @@ int add_a_watch(char *str);
 int new_wp(char *str);
 void free_wp(WP *wp);
 void print_wp();
+void print_free();
 void delete_point(int num);
 #endif

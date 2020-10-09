@@ -102,6 +102,18 @@ void print_wp() {
 	}
 }
 
+void print_free() {
+	WP* node = free_;
+	if (free_ == NULL) {
+		printf ("No free watch point now!\n");
+		return;
+	}
+	while (node != NULL) {
+		printf("free watch point %d\n", node->NO);
+		node = node->next;
+	}
+}
+
 void delete_point(int num){
 	WP* node = head;
 	while (node != NULL) {
