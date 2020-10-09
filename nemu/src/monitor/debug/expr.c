@@ -431,6 +431,10 @@ uint32_t eval(int p, int q, bool *success) {
 	if (tokens[p].type == DEREF) {
 		return swaddr_read( eval(q,q,success), 4);
 	}
+	if (tokens[p].type == NOT) {
+		return !(eval(q,q,success));
+	}
+
 	int index = dominant_operator(p, q);
 	//printf ("index == %d\n", index);
 	//printf ("p == %d  ", p);
