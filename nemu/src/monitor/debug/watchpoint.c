@@ -57,7 +57,7 @@ int new_wp(char *str) {
     int format = 1;
 	head->oldval = expr(str,&succ,&format);
 
-	printf ("add watch point %d: expression--%s val--0x%08x\n",head->NO,head->str,head->oldval);
+	printf ("add watch point %2d: expression--%s val--0x%08x\n",head->NO,head->str,head->oldval);
 	return 0;
 }
 
@@ -68,7 +68,7 @@ void free_wp(WP *wp) {
 	WP * temp = NULL;
 	if (free_ != NULL) {
 		free_->prev = wp;
-		temp = free_->next;
+		temp = free_;
 	}
 	free_ = wp;
 	// then we deal with head
@@ -97,7 +97,7 @@ void print_wp() {
 		return;
 	}
 	while (node != NULL) {
-		printf("watch point %d: expression--%s val--0x%08x\n", node->NO,node->str, node->oldval);
+		printf("watch point %2d: expression--%s val--0x%08x\n", node->NO,node->str, node->oldval);
 		node = node->next;
 	}
 }
@@ -109,7 +109,7 @@ void print_free() {
 		return;
 	}
 	while (node != NULL) {
-		printf("free watch point %d\n", node->NO);
+		printf("free watch point %2d\n", node->NO);
 		node = node->next;
 	}
 }
@@ -124,7 +124,7 @@ void delete_point(int num){
 		}
 		node = node->next;
 	}
-	printf ("Watch point %d is not being used\n",num);
+	printf ("Watch point %2d is not being used\n",num);
 }
 
 
@@ -147,7 +147,7 @@ bool spy_changed(){
 	WP* node = head;
 	while (node != NULL) {
 		if (ischange(node)) {
-			printf("The value of watch point %d has changed\n",node->NO);
+			printf("The value of watch point %2d has changed\n",node->NO);
 			result = true;
 		}
 		node = node->next;
