@@ -6,7 +6,14 @@
 
 // we add these
 #include "call/call.h"
-#include "push/push.h"
+#include "push-pop-ret/push.h"
+#include "comp/test.h"
+#include "comp/je.h"
+#include "comp/cmp.h"
+#include "push-pop-ret/pop.h"
+#include "push-pop-ret/ret.h"
+
+
 
 #include "arith/dec.h"
 #include "arith/inc.h"

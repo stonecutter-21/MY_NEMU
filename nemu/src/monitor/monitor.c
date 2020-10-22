@@ -74,6 +74,11 @@ static void load_entry() {
 	fclose(fp);
 }
 
+static void init_eflags() {
+	cpu.eflags = 2;
+}
+
+
 void restart() {
 	/* Perform some initialization to restart a program */
 #ifdef USE_RAMDISK
@@ -87,6 +92,9 @@ void restart() {
 	/* Set the initial instruction pointer. */
 	cpu.eip = ENTRY_START;
 
+	// initialize the eflages.
+	init_eflags();
+	
 	/* Initialize DRAM. */
 	init_ddr3();
 }
