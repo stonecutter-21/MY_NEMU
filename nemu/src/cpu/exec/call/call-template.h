@@ -23,7 +23,7 @@ make_helper (concat(call_rm_, SUFFIX))
     DATA_TYPE_S dis = op_src->val;
 	reg_l (R_ESP) -= DATA_BYTE;
 	swaddr_write (reg_l (R_ESP) , 4 , cpu.eip + length);
-	print_asm("cll %x",dis);
+	print_asm("call %x",dis);
 	cpu.eip = dis - length - 1;
 	return (length + 1);
 }
