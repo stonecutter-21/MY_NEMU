@@ -13,11 +13,9 @@ make_helper (concat( call_i_, SUFFIX)) {
     swaddr_write (reg_l (R_ESP), 4, cpu.eip + length);
    
     print_asm("call %x",cpu.eip + 1 + length + dis);
-    print_asm("eip == %x  ",cpu.eip);
+    printf("eip == %x  ",cpu.eip);
     
-    print_asm("dis ==  %x",dis);
-    print_asm("length == %x  ",length);
-
+    printf("dis ==  %x",dis);
     cpu.eip += dis;
     return (length+1);
 }
