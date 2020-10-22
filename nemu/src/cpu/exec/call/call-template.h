@@ -11,7 +11,7 @@ make_helper (concat( call_i_, SUFFIX)) {
     reg_l (R_ESP) -= DATA_BYTE;
     // then we write the data into stack
     swaddr_write (reg_l (R_ESP), 4, cpu.eip + length);
-    print_asm("call %x",cpu.eip + 1 + length + dis);
+    print_asm("cll %x",cpu.eip + 1 + length + dis);
     cpu.eip += dis;
     return (length+1);
 }
@@ -23,7 +23,7 @@ make_helper (concat(call_rm_, SUFFIX))
     DATA_TYPE_S dis = op_src->val;
 	reg_l (R_ESP) -= DATA_BYTE;
 	swaddr_write (reg_l (R_ESP) , 4 , cpu.eip + length);
-	print_asm("call 111%x",dis);
+	print_asm("cll %x",dis);
 	cpu.eip = dis - length - 1;
 	return (length + 1);
 }
