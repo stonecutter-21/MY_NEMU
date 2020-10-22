@@ -11,10 +11,11 @@ make_helper (concat( call_i_, SUFFIX)) {
     reg_l (R_ESP) -= DATA_BYTE;
     // then we write the data into stack
     swaddr_write (reg_l (R_ESP), 4, cpu.eip + length);
+   
+    print_asm("call %x",cpu.eip + 1 + length + dis);
     print_asm("eip == %x  ",cpu.eip);
     print_asm("length == %x  ",length);
     print_asm("dis ==  %x",dis);
-    print_asm("call %x",cpu.eip + 1 + length + dis);
     cpu.eip += dis;
     return (length+1);
 }
