@@ -3,8 +3,10 @@
 #include "data-mov/mov.h"
 #include "data-mov/xchg.h"
 
-#include "call/call.h"
 
+// we add these
+#include "call/call.h"
+#include "push/push.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
