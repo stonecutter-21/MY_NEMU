@@ -6,7 +6,7 @@
 make_helper (concat( call_i_, SUFFIX)) {
     // first we decode and get the length of the instr;
     int length = concat (decode_i_, SUFFIX)(eip);
-    DATA_TYPE_S dis = op_src->val;
+    DATA_TYPE_S dis = op_dest->val; 
     // then we deal with the esp
     reg_l (R_ESP) -= DATA_BYTE;
     // then we write the data into stack
