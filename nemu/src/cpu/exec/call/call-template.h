@@ -13,9 +13,9 @@ make_helper (concat( call_i_, SUFFIX)) {
     // then we write the data into stack
     
     print_asm("call %x",cpu.eip + 1 + length + dis);
-   // printf("eip == %x  ",cpu.eip);
+    printf("eip == %x  ",cpu.eip);
     
-   //  printf("dis ==  %x",dis);
+     printf("dis ==  %x",dis);
     cpu.eip += dis;
     return (length+1);
 }
