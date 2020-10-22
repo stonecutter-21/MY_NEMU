@@ -3,9 +3,9 @@
 #define instr push
 
 static void do_execute () {
+	printf("here???\n");
 	if (DATA_BYTE == 1) {
         op_src->val = (int8_t)op_src->val;
-		printf("here???\n");
     }
 	reg_l (R_ESP) -= 4;
 	swaddr_write (reg_l (R_ESP), 4, op_src->val);
