@@ -10,8 +10,8 @@ static void do_execute() {
     int s1,s2;
 	s1=op_dest->val>>length;
 	s2=op_src->val>>length;
-    cpu.OF=(s1 != s2 && s2 == cpu.SF) ;
-    cpu.ZF=!answer;
+    cpu.OF = (s1 != s2 && s2 == cpu.SF);
+    cpu.ZF = !answer;
 	answer ^= answer >>4;
 	answer ^= answer >>2;
 	answer ^= answer >>1;
