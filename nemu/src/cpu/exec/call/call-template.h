@@ -4,13 +4,15 @@
 
 // call immediate number
 make_helper (concat( call_i_, SUFFIX)) {
+    // we should decode and get the length of instruction
     int length = concat (decode_i_, SUFFIX)(eip+1);
+    // move the stack pointer "esp"
     reg_l (R_ESP) -= DATA_BYTE;
+    // write the address of return address into stack, aka esp
     swaddr_write (reg_l (R_ESP), 4, cpu.eip + length);
     DATA_TYPE_S dis = op_src->val; 
     print_asm("call %x",cpu.eip + 1 + length + dis);
     // printf("eip == %x  ",cpu.eip);
-    
     // printf("dis ==  %x",dis);
     cpu.eip += dis;
     return (length+1);
