@@ -5,7 +5,8 @@
 
 
 // we add these
-#include "call/call.h"
+#include "tran/call.h"
+#include "tran/jmp.h"
 #include "push-pop-ret/push.h"
 #include "comp/test.h"
 #include "comp/je.h"

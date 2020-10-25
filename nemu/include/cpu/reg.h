@@ -15,49 +15,48 @@ enum { R_ES, R_CS, R_SS, R_DS, R_FS, R_GS };
  * For more details about the register encoding scheme, see i386 manual.
  */
 
+
+
 typedef struct {
-	union{// a big one ... we see can it succeed... ok we can!
-		union { // a small one, to hold the array of registers
-		   uint32_t _32;
-		   uint16_t _16;
-		   uint8_t _8[2];
-	    } gpr[8];
-	
-	/* Do NOT change the order of the GPRs' definitions. */
-	    struct{
-		   uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-	    };
+	union {// a big one ... we see can it succeed... ok we can!
+		union {// a small one, to hold the array of registers
+			uint32_t _32;
+			uint16_t _16;
+			uint8_t _8[2];
+		} gpr[8];
+		struct {
+			uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
+			union{
+				struct{
+					uint32_t CF:	1;
+					uint32_t :		1;
+					uint32_t PF:	1;
+					uint32_t :		1;
+					uint32_t AF:	1;
+					uint32_t :		1;
+					uint32_t ZF:	1;
+					uint32_t SF:	1;
+					uint32_t TF:	1;
+					uint32_t IF:	1;
+					uint32_t DF:	1;
+					uint32_t OF:	1;
+					uint32_t IOPL:	2;
+					uint32_t NT:	1;
+					uint32_t :		1;
+					uint32_t RF:	1;
+					uint32_t VM:	1;
+					uint32_t :		14;
+				};
+				uint32_t eflags;
+			};
+		};
 	};
-	// still hold it here...
+
+	/* Do NOT change the order of the GPRs' definitions. */
+	
+//	uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
 	swaddr_t eip;
 
-	// we add EFLAGS here 
-	// see the i386, and think the first is the lowest one
-	union{
-		struct{
-			uint32_t CF : 1;
-			uint32_t :	  1; // nothing
-			uint32_t PF:  1;
-			uint32_t :	  0; // nothing
-			uint32_t AF:  1;
-			uint32_t :	  0; // nothing
-			uint32_t ZF:  1;
-			uint32_t SF:  1;
-			uint32_t TF:  1;
-			uint32_t IF:  1;
-			uint32_t DF:  1;
-			uint32_t OF:  1;
-			uint32_t IOPL:2;
-			uint32_t NT:  1;
-			uint32_t :	  0; // nothing
-			uint32_t RF:  1;
-			uint32_t VM:  1;
-			// the rest
-			// maybe we don't need it?
-			//uint32_t :	17;
-			};
-		uint32_t eflags;
-		};
 } CPU_state;
 
 extern CPU_state cpu;

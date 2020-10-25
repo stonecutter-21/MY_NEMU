@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "x86-inc/cpu.h"
 
+
 /* read CR0 */
 static inline uint32_t
 read_cr0() {
