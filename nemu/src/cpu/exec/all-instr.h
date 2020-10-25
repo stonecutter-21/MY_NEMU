@@ -8,6 +8,7 @@
 #include "tran/call.h"
 #include "tran/jmp.h"
 #include "tran/jne.h"
+#include "tran/jbe.h"
 #include "push-pop-ret/push.h"
 #include "comp/test.h"
 #include "comp/je.h"
