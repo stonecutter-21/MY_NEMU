@@ -10,7 +10,9 @@
 #include "tran/call.h"
 #include "tran/jmp.h"
 #include "tran/jne.h"
+#include "tran/jle.h"
 #include "tran/jbe.h"
+
 #include "tran/leave.h"
 #include "push-pop-ret/push.h"
 #include "comp/test.h"
