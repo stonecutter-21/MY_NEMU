@@ -1063,7 +1063,7 @@ PAL_BattleStartFrame(
 
 #ifndef PAL_CLASSIC
    FLOAT                    flMax;
-   BOOL                     fMoved = FALSE;
+   BOOL                     fed = FALSE;
    SHORT                    sMax, sMaxIndex;
 #endif
 
