@@ -2,6 +2,8 @@
 
 #include "data-mov/mov.h"
 #include "data-mov/xchg.h"
+#include "data-mov/movzb.h"
+
 
 
 // we add these
