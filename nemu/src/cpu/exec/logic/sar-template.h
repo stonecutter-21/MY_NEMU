@@ -9,9 +9,18 @@ static void do_execute () {
 	uint8_t count = src & 0x1f;
 	dest >>= count;
 	OPERAND_W(op_dest, dest);
-
+	DATA_TYPE ret = dest;
+	cpu.CF = 0;
+	cpu.OF = 0;
+	cpu.ZF = !ret;
+    cpu.SF = ret >> ((DATA_BYTE << 3) - 1);
+	ret ^= ret >> 4;
+    ret ^= ret >> 2;
+    ret ^= ret >> 1;
+    ret &= 1;
+    cpu.PF = !ret;
 	/* TODO: Update EFLAGS. */
-	panic("please implement me");
+	// panic("please implement me");
 
 	print_asm_template2();
 }
