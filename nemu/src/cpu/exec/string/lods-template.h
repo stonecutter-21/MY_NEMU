@@ -10,6 +10,4 @@ make_helper(concat(lods_, SUFFIX)) {
     return 1;
 }
 
-
-
 #include "cpu/exec/template-end.h"
