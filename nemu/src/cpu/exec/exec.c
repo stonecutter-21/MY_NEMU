@@ -35,32 +35,32 @@ make_group(group1_sx_v,
 /* 0xc0 */
 make_group(group2_i_b,
 	inv, inv, inv, inv, 
-	shl_rm_imm_b, inv, inv,  sar_rm_imm_b)
+	shl_rm_imm_b, shr_rm_imm_b, inv,  sar_rm_imm_b)
 
 /* 0xc1 */
 make_group(group2_i_v,
 	inv, inv, inv, inv, 
-	shl_rm_imm_v, inv, inv, sar_rm_imm_v)
+	shl_rm_imm_v, shr_rm_imm_v, inv, sar_rm_imm_v)
 
 /* 0xd0 */
 make_group(group2_1_b,
 	inv, inv, inv, inv, 
-	shl_rm_1_b, inv, inv, sar_rm_1_b)
+	shl_rm_1_b,  shr_rm_1_b, inv, sar_rm_1_b)
 
 /* 0xd1 */
 make_group(group2_1_v,
 	inv, inv, inv, inv, 
-	shl_rm_1_v, inv, inv, sar_rm_1_v)
+	shl_rm_1_v, shr_rm_1_v, inv, sar_rm_1_v)
 
 /* 0xd2 */
 make_group(group2_cl_b,
 	inv, inv, inv, inv, 
-	shl_rm_cl_b, inv, inv, sar_rm_cl_b)
+	shl_rm_cl_b, shr_rm_cl_b, inv, sar_rm_cl_b)
 
 /* 0xd3 */
 make_group(group2_cl_v,
 	inv, inv, inv, inv, 
-	shl_rm_cl_v, inv, inv, sar_rm_cl_v)
+	shl_rm_cl_v, shr_rm_cl_v, inv, sar_rm_cl_v)
 
 /* 0xf6 */
 make_group(group3_b,
@@ -204,7 +204,7 @@ helper_fun _2byte_opcode_table [256] = {
 /* 0xa0 */	inv, inv, inv, inv, 
 /* 0xa4 */	inv, inv, inv, inv,
 /* 0xa8 */	inv, inv, inv, inv,
-/* 0xac */	inv, inv, inv, imul_rm2r_v,
+/* 0xac */	shrdi_v, inv, inv, imul_rm2r_v,
 /* 0xb0 */	inv, inv, inv, inv, 
 /* 0xb4 */	inv, inv, movzb_rm2r_v, inv, 
 /* 0xb8 */	inv, inv, inv, inv,
