@@ -65,6 +65,7 @@
 #include "string/rep.h"
 #include "string/stos.h"
 #include "string/scas.h"
+#include "string/lods.h"
 
 #include "misc/misc.h"
 
