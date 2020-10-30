@@ -10,7 +10,7 @@ make_helper(concat(scas_, SUFFIX)) {
 
     if (cpu.DF == 0) reg_l(R_EDI) += DATA_BYTE;
     else reg_l(R_EDI) -= DATA_BYTE;
-    
+	/* TODO: Update EFLAGS. */
     cpu.ZF = !ret;
     cpu.SF = ret >> ((DATA_BYTE << 3) - 1);
     cpu.CF = (t1 < t2);
