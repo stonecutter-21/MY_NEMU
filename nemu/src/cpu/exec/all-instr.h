@@ -53,6 +53,7 @@
 
 
 #include "string/rep.h"
+#include "string/stos.h"
 
 #include "misc/misc.h"
 
