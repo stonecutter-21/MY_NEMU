@@ -4,6 +4,8 @@
 #include "data-mov/xchg.h"
 #include "data-mov/movzb.h"
 #include "data-mov/movs.h"
+#include "data-mov/movsx.h"
+
 
 
 
