@@ -51,9 +51,9 @@ clean: clean-cpp
 	-rm -f *log.txt entry $(FLOAT) 2> /dev/null
 
 
-##### some convinient rules #####
+##### some convinient integralrules #####
 
-USERPROG := obj/testcase/quadratic-eq
+USERPROG := obj/testcase/integral
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
