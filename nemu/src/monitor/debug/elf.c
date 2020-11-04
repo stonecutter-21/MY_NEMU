@@ -3,9 +3,6 @@
 #include <elf.h>
 
 
-#define max_string_long 32
-
-
 char *exec_file = NULL;
 
 static char *strtab = NULL;
@@ -91,13 +88,13 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 	int i;
 	for (i = 0; i < nr_symtab_entry; i++){
 		if ((symtab[i].st_info & 0xf) == STT_OBJECT){ // when find it
-			char tmp[max_string_long];
+			char temp[32];
 			// sub the offset, and we get the length of the length
 			int len = symtab[i+1].st_name - symtab[i].st_name - 1;
-			strncpy(tmp,strtab + symtab[i].st_name,len);
-		    printf("symtab: %s\n",strtab + symtab[i].st_name);
-			tmp[len] = '\0';
-			if (strcmp(tmp,str) == 0){
+			strncpy(temp,strtab + symtab[i].st_name,len);
+		    //  printf("symtab: %s\n",strtab + symtab[i].st_name);
+			temp[len] = '\0';
+			if (strcmp(temp,str) == 0){
 				return symtab[i].st_value; // get the value
 			} 
 		}
