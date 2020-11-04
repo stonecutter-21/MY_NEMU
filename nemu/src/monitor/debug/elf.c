@@ -94,6 +94,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 			char tmp[max_string_long];
 			int len = strlen(str);
 			strncpy(tmp,strtab + symtab[i].st_name,len);
+			printf("symtab: %s\n",strtab + symtab[i].st_name);
 			tmp[len] = '\0';
 			if (strcmp(tmp,str) == 0){
 				return symtab[i].st_value; // get the value
