@@ -70,7 +70,7 @@ Token tokens[32];
 int nr_token;
 
 static bool make_token(char *e) {
-	memset(tokens,0,32);
+	memset(tokens,0,32); // maybe it is important?
 	int position = 0;
 	int i;
 	regmatch_t pmatch;
@@ -99,22 +99,26 @@ static bool make_token(char *e) {
 					case NUMBER:
 					  tokens[nr_token].type = NUMBER;
 					  strncpy(tokens[nr_token].str, substr_start,substr_len);
+					  tokens [nr_token].str[substr_len-1]='\0';
 					  nr_token ++;
 					  break;
 					case HEX:
 					  tokens[nr_token].type = HEX;
 					  strncpy(tokens[nr_token].str, substr_start,substr_len);
+					  tokens [nr_token].str[substr_len-1]='\0';
 					  nr_token ++;
 					  break;
 					case REG:
 					  tokens[nr_token].type = REG;
 					  strncpy(tokens[nr_token].str, substr_start,substr_len);
+					  tokens [nr_token].str[substr_len-1]='\0';
 					  nr_token ++;
 					  break;
 					case SYMBOL:
 					   // printf("arrive here-- make token!!\n");
 					   tokens[nr_token].type = SYMBOL;
 					   strncpy(tokens[nr_token].str, substr_start,substr_len);
+					   tokens[nr_token].str[substr_len-1]='\0';
 					   // printf("substr_len: %d\n",substr_len);
 					   nr_token ++;
 					case '+':
