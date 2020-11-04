@@ -300,6 +300,7 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 		int answer;
 		answer = get_value_of_symbol(tokens[p].str, success);
 		if (*success == false) {
+			    printf("can't get the value of %s\n",tokens[p].str);
 				return 0;
 			}
 		return answer;
