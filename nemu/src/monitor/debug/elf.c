@@ -92,7 +92,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 	for (i = 0; i < nr_symtab_entry; i++){
 		if ((symtab[i].st_info & 0xf) == STT_OBJECT){ // when find it
 			char tmp[max_string_long];
-			int len = strlen(str);
+			int len = symtab[i+1].st_name - symtab[i].st_name - 1;
 			strncpy(tmp,strtab + symtab[i].st_name,len);
 			printf("symtab: %s\n",strtab + symtab[i].st_name);
 			tmp[len] = '\0';
