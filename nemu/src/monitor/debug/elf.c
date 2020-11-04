@@ -87,7 +87,7 @@ void load_elf_tables(int argc, char *argv[]) {
 
 
 uint32_t get_value_of_symbol(char* str,bool* success){
-	 printf("arrive here--get_value_symbol!!\n");
+	// printf("arrive here--get_value_symbol!!\n");
 	int i;
 	for (i = 0; i < nr_symtab_entry; i++){
 		if ((symtab[i].st_info & 0xf) == STT_OBJECT){ // when find it
@@ -95,7 +95,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 			// sub the offset, and we get the length of the length
 			int len = symtab[i+1].st_name - symtab[i].st_name - 1;
 			strncpy(tmp,strtab + symtab[i].st_name,len);
-			// printf("symtab: %s\n",strtab + symtab[i].st_name);
+		    printf("symtab: %s\n",strtab + symtab[i].st_name);
 			tmp[len] = '\0';
 			if (strcmp(tmp,str) == 0){
 				return symtab[i].st_value; // get the value
