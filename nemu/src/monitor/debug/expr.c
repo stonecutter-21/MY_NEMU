@@ -114,7 +114,7 @@ static bool make_token(char *e) {
 					   // printf("arrive here-- make token!!\n");
 					   tokens[nr_token].type = SYMBOL;
 					   strncpy(tokens[nr_token].str, substr_start,substr_len);
-					   printf("substr_len: %d\n",substr_len);
+					   // printf("substr_len: %d\n",substr_len);
 					   nr_token ++;
 					case '+':
 					case '-':
@@ -299,7 +299,9 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 	}
 	if (tokens[p].type == SYMBOL){
 		int answer;
+		printf("tokens[p].str == %s\n",tokens[p].str);
 		answer = get_value_of_symbol(tokens[p].str, success);
+	
 		if (*success == false) {
 			    printf("can't get the value of %s\n",tokens[p].str);
 				return 0;
