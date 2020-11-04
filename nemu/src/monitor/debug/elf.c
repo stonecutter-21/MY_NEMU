@@ -93,6 +93,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 			char temp[32];
 			int len = strlen(str);
 			strncpy(temp,strtab + symtab[i].st_name,len);
+			printf("temp == %s\n",temp);
 		    // printf("symtab: %s\n",strtab + symtab[i].st_name);
 			temp[len] = '\0';
 			if (strcmp(temp,str) == 0){
