@@ -301,7 +301,8 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 		return -1;
 		// it means the expression is wrong...
 	}
-	if (tokens[p].type == SYMBOL){
+	else if (p == q) {
+		if (tokens[p].type == SYMBOL){
 		int answer;
 		// printf("tokens[p].str == %s\n",tokens[p].str);
 		answer = get_value_of_symbol(tokens[p].str, success);
@@ -312,16 +313,6 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 			}
 		return answer;
 	}
-	else if (p == q) {
-		if (tokens[p].type == SYMBOL){
-			*format = 1;
-			int answer;
-			answer = get_value_of_symbol(tokens[p].str, success);
-			if (*success == false) {
-				return 0;
-			}
-			return answer;
-		}
 		if (tokens[p].type == NUMBER) {
 			int answer;
 			sscanf(tokens[p].str,"%d",&answer);
@@ -357,7 +348,7 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 	}
 
 	int index = dominant_operator(p, q);
-	 printf ("index == %d\n", index);
+	// printf ("index == %d\n", index);
 	//printf ("p == %d  ", p);
 	//printf ("q == %d  ", q);
 	int op = tokens[index].type;
