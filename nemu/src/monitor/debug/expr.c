@@ -5,9 +5,10 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <elf.h>
 
 enum {
-	NOTYPE = 256, EQ, NEQ, AND, OR, NOT, NUMBER, HEX,REG, DEREF, NEG,
+	NOTYPE = 256, EQ, NEQ, AND, OR, NOT, NUMBER, HEX,REG, DEREF, NEG, SYMBOL, 
 	/* TODO: Add more token types */
 };
 
@@ -35,6 +36,7 @@ static struct rule {
 	{"\\$[a-eshilpx]{2,3}",REG},     // register
 	{"0x[0-9a-f]+",HEX},            //hex-numbets
 	{"[0-9]+", NUMBER},             // numbers
+	{"\\b[a-zA-Z0-9_]+\\b", SYMBOL},// symbols (newly added from pa2...)
 	
 };
 
@@ -108,6 +110,10 @@ static bool make_token(char *e) {
 					  strncpy(tokens[nr_token].str, substr_start,substr_len);
 					  nr_token ++;
 					  break;
+					case SYMBOL:
+					   tokens[nr_token].type = SYMBOL;
+					   strncpy(tokens[nr_token].str, substr_start,substr_len);
+					   nr_token ++;
 					case '+':
 					case '-':
 					case '*':
@@ -279,7 +285,7 @@ int help_find_reg(char *arg, bool *success) {
 }
 
 
-
+uint32_t get_value_of_symbol(char *str,bool *success);
 
 
 uint32_t eval(int p, int q, bool *success) {
@@ -289,7 +295,18 @@ uint32_t eval(int p, int q, bool *success) {
 		return -1;
 		// it means the expression is wrong...
 	}
+	if (tokens[p].type == SYMBOL){
+
+	}
 	else if (p == q) {
+		if (tokens[p].type == SYMBOL){
+			int answer;
+			answer = get_value_of_symbol(tokens[p].str, success);
+			if (*success == false) {
+				return 0;
+			}
+			return answer;
+		}
 		if (tokens[p].type == NUMBER) {
 			int answer;
 			sscanf(tokens[p].str,"%d",&answer);

@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <elf.h>
 
+
+#define max_string_long 32
+
+
 char *exec_file = NULL;
 
 static char *strtab = NULL;
@@ -79,5 +83,39 @@ void load_elf_tables(int argc, char *argv[]) {
 	assert(strtab != NULL && symtab != NULL);
 
 	fclose(fp);
+}
+
+
+uint32_t get_value_of_symbol(char* str,bool* success){
+	int i;
+	for (i = 0; i < nr_symtab_entry; i++){
+		if ((symtab[i].st_info & 0xf) == STT_OBJECT){ // when find it
+			char tmp[max_string_long];
+			int len = strlen(str);
+			strncpy(tmp,strtab + symtab[i].st_name,len);
+			tmp[len] = '\0';
+			if (strcmp(tmp,str) == 0){
+				return symtab[i].st_value; // get the value
+			} 
+		}
+	}
+	// if failed...
+	*success = false;
+	return 0;
+}
+
+
+// almost the same as above one...
+void get_addr_func(swaddr_t func_address,char* func_name){
+	int i;
+	for (i = 0; i < nr_symtab_entry; i++){
+		if ((symtab[i].st_info & 0xf) == STT_FUNC){
+			if (func_address >= symtab[i].st_value && symtab[i].st_value + symtab[i].st_size >= func_address){
+				strcpy(func_name,strtab + symtab[i].st_name);
+				return;
+			}
+		}
+	}
+	func_name[0]='\0';
 }
 
