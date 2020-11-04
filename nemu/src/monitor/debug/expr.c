@@ -111,7 +111,7 @@ static bool make_token(char *e) {
 					  nr_token ++;
 					  break;
 					case SYMBOL:
-					   printf("arrive here-- make token!!\n");
+					   // printf("arrive here-- make token!!\n");
 					   tokens[nr_token].type = SYMBOL;
 					   strncpy(tokens[nr_token].str, substr_start,substr_len);
 					   nr_token ++;
@@ -297,7 +297,12 @@ uint32_t eval(int p, int q, bool *success) {
 		// it means the expression is wrong...
 	}
 	if (tokens[p].type == SYMBOL){
-
+		int answer;
+		answer = get_value_of_symbol(tokens[p].str, success);
+		if (*success == false) {
+				return 0;
+			}
+		return answer;
 	}
 	else if (p == q) {
 		if (tokens[p].type == SYMBOL){
