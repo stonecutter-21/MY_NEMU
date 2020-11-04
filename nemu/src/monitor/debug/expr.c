@@ -70,6 +70,7 @@ Token tokens[32];
 int nr_token;
 
 static bool make_token(char *e) {
+	memset(tokens,0,32);
 	int position = 0;
 	int i;
 	regmatch_t pmatch;
@@ -299,7 +300,7 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 	}
 	if (tokens[p].type == SYMBOL){
 		int answer;
-		printf("tokens[p].str == %s\n",tokens[p].str);
+		// printf("tokens[p].str == %s\n",tokens[p].str);
 		answer = get_value_of_symbol(tokens[p].str, success);
 	
 		if (*success == false) {
