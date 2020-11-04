@@ -91,6 +91,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 	for (i = 0; i < nr_symtab_entry; i++){
 		if ((symtab[i].st_info & 0xf) == STT_OBJECT){ // when find it
 			char temp[32];
+			memset(temp,0,32);
 			int len = strlen(str);
 			strncpy(temp,strtab + symtab[i].st_name,len);
 			printf("temp == %s\n",temp);
