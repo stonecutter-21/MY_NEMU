@@ -289,7 +289,7 @@ int help_find_reg(char *arg, bool *success) {
 uint32_t get_value_of_symbol(char *str,bool *success);
 
 
-uint32_t eval(int p, int q, bool *success) {
+uint32_t eval(int p, int q, bool *success, int *format) {
 	if (p > q) {
 		//printf ("here in p > q?\n");
 		*success = false;
@@ -306,6 +306,7 @@ uint32_t eval(int p, int q, bool *success) {
 	}
 	else if (p == q) {
 		if (tokens[p].type == SYMBOL){
+			*format = 1;
 			int answer;
 			answer = get_value_of_symbol(tokens[p].str, success);
 			if (*success == false) {
@@ -335,16 +336,16 @@ uint32_t eval(int p, int q, bool *success) {
 	}
 	if (check_parentheses(p ,q) == true) {
 
-		return eval (p+1, q-1, success);
+		return eval (p+1, q-1, success, format);
 	}
 	if (tokens[p].type == NEG) {
-		return -eval(p+1,q,success);
+		return -eval(p+1,q,success, format);
 	}
 	if (tokens[p].type == DEREF) {
-		return swaddr_read( eval(p+1,q,success), 4);
+		return swaddr_read( eval(p+1,q,success, format), 4);
 	}
 	if (tokens[p].type == NOT) {
-		return !(eval(q,q,success));
+		return !(eval(q,q,success, format));
 	}
 
 	int index = dominant_operator(p, q);
@@ -354,9 +355,9 @@ uint32_t eval(int p, int q, bool *success) {
 	int op = tokens[index].type;
 	//printf ("op == %c\n", op);
 
-	uint32_t v1 = eval(p, index-1, success);
+	uint32_t v1 = eval(p, index-1, success, format);
 	//printf ("v1 == %d\n", v1);
-	uint32_t v2 = eval(index+1, q, success);
+	uint32_t v2 = eval(index+1, q, success, format);
 	//printf ("v2 == %d\n", v2);
 	switch (op)
 	{
@@ -388,12 +389,12 @@ uint32_t expr(char *e, bool *success, int* format) {
 			tokens[i].type = NEG;
 		}
 	}
-	if (tokens[0].type == REG) {
+	if (tokens[0].type == REG || tokens[0].type == SYMBOL) {
 		*format = 1;
 	}
 	/* TODO: Insert codes to evaluate the expression. */
-	return eval(0, nr_token-1, success); // call this recursive funcition to compute the answer
-	panic("please implement me");
-	return 0;
+	return eval(0, nr_token-1, success, format); // call this recursive funcition to compute the answer
+	// panic("please implement me");
+	// return 0;
 }
 
