@@ -53,7 +53,7 @@ clean: clean-cpp
 
 ##### some convinient integralrules #####
 
-USERPROG := obj/testcase/quadratic-eq
+USERPROG := obj/testcase/matrix-mul-small
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
