@@ -87,6 +87,7 @@ void load_elf_tables(int argc, char *argv[]) {
 
 
 uint32_t get_value_of_symbol(char* str,bool* success){
+	printf("arrive here!!\n");
 	int i;
 	for (i = 0; i < nr_symtab_entry; i++){
 		if ((symtab[i].st_info & 0xf) == STT_OBJECT){ // when find it
