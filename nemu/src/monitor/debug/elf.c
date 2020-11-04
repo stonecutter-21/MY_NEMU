@@ -89,8 +89,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 	for (i = 0; i < nr_symtab_entry; i++){
 		if ((symtab[i].st_info & 0xf) == STT_OBJECT){ // when find it
 			char temp[32];
-			// sub the offset, and we get the length of the length
-			int len = symtab[i+1].st_name - symtab[i].st_name - 1;
+			int len = strlen(str);
 			strncpy(temp,strtab + symtab[i].st_name,len);
 		    //  printf("symtab: %s\n",strtab + symtab[i].st_name);
 			temp[len] = '\0';
