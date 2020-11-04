@@ -70,7 +70,6 @@ Token tokens[32];
 int nr_token;
 
 static bool make_token(char *e) {
-	memset(tokens,0,32); // maybe it is important?
 	int position = 0;
 	int i;
 	regmatch_t pmatch;
@@ -358,7 +357,7 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 	}
 
 	int index = dominant_operator(p, q);
-	printf ("index == %d\n", index);
+	// printf ("index == %d\n", index);
 	//printf ("p == %d  ", p);
 	//printf ("q == %d  ", q);
 	int op = tokens[index].type;
