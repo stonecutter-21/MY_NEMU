@@ -17,7 +17,6 @@ void create_video_mapping();
 uint32_t get_ucr3();
 
 uint32_t loader() {
-	int i;
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
@@ -36,9 +35,9 @@ uint32_t loader() {
 	const uint32_t elf_magic = 0x464c457f; // aka DEL_E_L_F~~~(ascii)
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
-
+	int i;
 	/* Load each program segment */
-	 panic("please implement me");
+	 //  panic("please implement me");
 	for(i = 0;i < elf->e_phnum; i++) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
