@@ -37,6 +37,7 @@
 
 
 #include "arith/dec.h"
+#include "arith/adc.h"
 #include "arith/inc.h"
 #include "arith/neg.h"
 #include "arith/imul.h"
