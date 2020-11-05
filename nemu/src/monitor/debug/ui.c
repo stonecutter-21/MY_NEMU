@@ -246,7 +246,7 @@ static int cmd_bt(char *args) {
 		if (answer[0] == '\0') {
 			break;
 		}
-		printf ("#%d: 0x%08x  ",count_print,this_ebp.ret_addr);
+		printf ("#%d: 0x%08x ",count_print,this_ebp.ret_addr);
 		count_print++;
 		printf("%s ",answer);
 
