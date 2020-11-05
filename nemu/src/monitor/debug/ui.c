@@ -232,7 +232,7 @@ void get_addr_of_func(swaddr_t func_address,char* func_name);
 
 static int cmd_bt(char *args) {
 	if (args != NULL){
-		printf("Too few arguments. Type \"help\" for more infomations\n");
+		printf("just type bt is ok!\n");
 		return 0;
 	}
 	char answer[32]; // hold the answer we want to print
