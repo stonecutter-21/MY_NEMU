@@ -53,7 +53,7 @@ clean: clean-cpp
 
 ##### some convinient integralrules #####
 
-USERPROG := obj/testcase/struct
+USERPROG := obj/testcase/sub-longlong
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
