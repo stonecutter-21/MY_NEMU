@@ -53,7 +53,7 @@ clean: clean-cpp
 
 ##### some convinient integralrules #####
 
-USERPROG := obj/testcase/matrix-mul-small
+USERPROG := obj/testcase/max
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
