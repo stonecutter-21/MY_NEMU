@@ -383,6 +383,9 @@ uint32_t expr(char *e, bool *success, int* format) {
 	}
 	int i;
 	for (i = 0 ; i < nr_token; i++) {
+		if (tokens[i].type == REG || tokens[i].type == SYMBOL) {
+		*format = 1;
+		}
 		if (tokens[i].type == '*' && (i == 0 || (tokens[i-1].type !=NUMBER && tokens[i-1].type != ')' ))) {
 			tokens[i].type = DEREF;
 		}
@@ -390,9 +393,7 @@ uint32_t expr(char *e, bool *success, int* format) {
 			tokens[i].type = NEG;
 		}
 	}
-	if (tokens[0].type == REG || tokens[0].type == SYMBOL) {
-		*format = 1;
-	}
+	
 	/* TODO: Insert codes to evaluate the expression. */
 	return eval(0, nr_token-1, success, format); // call this recursive funcition to compute the answer
 	// panic("please implement me");
