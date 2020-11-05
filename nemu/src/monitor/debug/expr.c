@@ -305,7 +305,6 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 	else if (p == q) {
 		if (tokens[p].type == SYMBOL){
 		int answer;
-		printf ("here in symbol?\n");
 		// printf("tokens[p].str == %s\n",tokens[p].str);
 		answer = get_value_of_symbol(tokens[p].str, success);
 	
@@ -314,7 +313,7 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 				return 0;
 			}
 		return answer;
-	}
+		}
 		if (tokens[p].type == NUMBER) {
 			int answer;
 			sscanf(tokens[p].str,"%d",&answer);
