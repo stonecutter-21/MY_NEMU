@@ -85,7 +85,7 @@ void load_elf_tables(int argc, char *argv[]) {
 
 uint32_t get_value_of_symbol(char* str,bool* success){
 	// printf("arrive here--get_value_symbol!!\n");
-    printf("str == %s\n",str);
+    // printf("str == %s\n",str);
 	// printf("nr_symtab_entry: %d\n",nr_symtab_entry);
 	int i;
 	for (i = 0; i < nr_symtab_entry; i++){
@@ -93,7 +93,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 			char temp[32];
 			int len = strlen(str);
 			strncpy(temp,strtab + symtab[i].st_name,len);
-		    printf("temp == %s\n",temp);
+		   //  printf("temp == %s\n",temp);
 		    // printf("symtab: %s\n",strtab + symtab[i].st_name);
 			temp[len] = '\0';
 			if (strcmp(temp,str) == 0){
