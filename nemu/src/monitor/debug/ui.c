@@ -251,11 +251,11 @@ static int cmd_bt(char *args) {
 		printf("%s ",answer);
 
 		this_ebp.prev_ebp = swaddr_read(addr,4);
-		this_ebp.ret_addr = swaddr_read(addr + 4, 4);
+		this_ebp.ret_addr = swaddr_read(addr+4,4);
 		
 		int j;
 		for(j = 0; j < 4; j++) {
-			this_ebp.args[j] = swaddr_read(addr+8+j*4, 4);
+			this_ebp.args[j] = swaddr_read(addr+8+j*4,4);
 			printf("0x%x",this_ebp.args[j]);
 			if (j != 3){
 				printf(", ");
