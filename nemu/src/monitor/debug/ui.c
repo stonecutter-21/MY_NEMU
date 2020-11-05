@@ -2,7 +2,6 @@
 #include "monitor/expr.h"
 #include "monitor/watchpoint.h"
 #include "nemu.h"
-
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -50,6 +49,8 @@ static int cmd_WATCH(char *args);
 
 static int cmd_delete(char *args);
 
+static int cmd_bt(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -64,6 +65,7 @@ static struct {
 	{ "p","EXPR Compute the value of the expression EXPR", cmd_EXPR},
 	{ "w", "Suspends program execution when the expression EXPR value changes.", cmd_WATCH},
 	{ "d", "[N] Delete the watch point", cmd_delete},
+	{ "bt", "Print chain of stack frame.", cmd_bt},
 	/* TODO: Add more commands */
 
 };
@@ -216,6 +218,54 @@ static int cmd_delete(char *args) {
 	delete_point(num);
 	return 0;
 }
+
+
+// given by the pdf
+typedef struct {
+    swaddr_t prev_ebp;
+    swaddr_t ret_addr;
+    uint32_t args[4];
+} PartOfStackFrame;
+
+
+void get_addr_of_func(swaddr_t func_address,char* func_name);
+
+static int cmd_bt(char *args) {
+	if (args != NULL){
+		printf("Too few arguments. Type \"help\" for more infomations\n");
+		return 0;
+	}
+	char answer[32]; // hold the answer we want to print
+	PartOfStackFrame this_ebp;
+
+	this_ebp.ret_addr = cpu.eip;
+	swaddr_t addr;
+	int count_print = 0;
+	for( addr = reg_l(R_EBP); addr>0; addr = this_ebp.prev_ebp) {
+		get_addr_of_func (this_ebp.ret_addr,answer);
+		if (answer[0] == '\0') {
+			break;
+		}
+		printf ("#%d: 0x%08x ",count_print,this_ebp.ret_addr);
+		count_print++;
+		printf("%s",answer);
+
+		this_ebp.prev_ebp = swaddr_read(addr,4);
+		this_ebp.ret_addr = swaddr_read(addr + 4, 4);
+		
+		int j;
+		for(j = 0; j < 4; j++) {
+			this_ebp.args[j] = swaddr_read(addr+8+j*4, 4);
+			printf("0x%x",this_ebp.args[j]);
+			if (j != 3){
+				printf(", ");
+			}
+		}
+	}
+	return 0;
+}
+
+
 void ui_mainloop() {
 	while(1) {
 		char *str = rl_gets();

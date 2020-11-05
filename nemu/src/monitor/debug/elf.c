@@ -108,7 +108,7 @@ uint32_t get_value_of_symbol(char* str,bool* success){
 
 
 // almost the same as above one...
-void get_addr_func(swaddr_t func_address,char* func_name){
+void get_addr_of_func(swaddr_t func_address,char* func_name){
 	int i;
 	for (i = 0; i < nr_symtab_entry; i++){
 		if ((symtab[i].st_info & 0xf) == STT_FUNC){
