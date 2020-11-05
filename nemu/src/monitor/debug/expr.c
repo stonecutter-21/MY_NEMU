@@ -301,9 +301,11 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 		return -1;
 		// it means the expression is wrong...
 	}
+	
 	else if (p == q) {
 		if (tokens[p].type == SYMBOL){
 		int answer;
+		printf ("here in symbol?\n");
 		// printf("tokens[p].str == %s\n",tokens[p].str);
 		answer = get_value_of_symbol(tokens[p].str, success);
 	
