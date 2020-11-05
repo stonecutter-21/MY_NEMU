@@ -114,10 +114,11 @@ static bool make_token(char *e) {
 					  nr_token ++;
 					  break;
 					case SYMBOL:
-					    printf("arrive here-- make token!!\n");
+					   // printf("arrive here-- make token!!\n");
 					   tokens[nr_token].type = SYMBOL;
 					   strncpy(tokens[nr_token].str, substr_start,substr_len);
 					   tokens[nr_token].str[substr_len] = '\0';
+					   printf("str:%s\n",tokens[nr_token].str);
 					   // printf("substr_len: %d\n",substr_len);
 					   nr_token ++;
 					case '+':
