@@ -53,7 +53,7 @@ clean: clean-cpp
 
 ##### some convinient integralrules #####
 
-USERPROG := obj/testcase/prime
+USERPROG := obj/testcase/print-FLOAT
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
