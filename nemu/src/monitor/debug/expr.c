@@ -118,7 +118,7 @@ static bool make_token(char *e) {
 					   tokens[nr_token].type = SYMBOL;
 					   strncpy(tokens[nr_token].str, substr_start,substr_len);
 					   tokens[nr_token].str[substr_len] = '\0';
-					   printf("str:%s\n",tokens[nr_token].str);
+					   // printf("str:%s\n",tokens[nr_token].str);
 					   // printf("substr_len: %d\n",substr_len);
 					   nr_token ++;
 					case '+':
@@ -349,7 +349,7 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 	}
 
 	int index = dominant_operator(p, q);
-	// printf ("index == %d\n", index);
+	 printf ("index == %d\n", index);
 	//printf ("p == %d  ", p);
 	//printf ("q == %d  ", q);
 	int op = tokens[index].type;
