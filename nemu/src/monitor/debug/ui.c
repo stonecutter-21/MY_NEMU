@@ -261,6 +261,7 @@ static int cmd_bt(char *args) {
 				printf(", ");
 			}
 		}
+		printf("\n");
 	}
 	return 0;
 }
