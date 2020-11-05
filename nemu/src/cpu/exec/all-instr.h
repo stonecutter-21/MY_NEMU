@@ -6,6 +6,7 @@
 #include "data-mov/movs.h"
 #include "data-mov/movsx.h"
 #include "data-mov/cltd.h"
+#include "data-mov/movzw.h"
 
 
 
