@@ -53,7 +53,7 @@ clean: clean-cpp
 
 ##### some convinient integralrules #####
 
-USERPROG := obj/testcase/fact
+USERPROG := obj/testcase/fib
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
