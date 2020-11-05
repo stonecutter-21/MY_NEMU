@@ -246,9 +246,9 @@ static int cmd_bt(char *args) {
 		if (answer[0] == '\0') {
 			break;
 		}
-		printf ("#%d: 0x%08x ",count_print,this_ebp.ret_addr);
+		printf ("#%d: 0x%08x  ",count_print,this_ebp.ret_addr);
 		count_print++;
-		printf("%s",answer);
+		printf("%s ",answer);
 
 		this_ebp.prev_ebp = swaddr_read(addr,4);
 		this_ebp.ret_addr = swaddr_read(addr + 4, 4);
