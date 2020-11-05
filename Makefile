@@ -53,7 +53,7 @@ clean: clean-cpp
 
 ##### some convinient integralrules #####
 
-USERPROG := obj/testcase/quick-sort
+USERPROG := obj/testcase/select-sort
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
