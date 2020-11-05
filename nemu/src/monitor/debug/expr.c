@@ -121,6 +121,7 @@ static bool make_token(char *e) {
 					   // printf("str:%s\n",tokens[nr_token].str);
 					   // printf("substr_len: %d\n",substr_len);
 					   nr_token ++;
+					   break;
 					case '+':
 					case '-':
 					case '*':
@@ -349,7 +350,7 @@ uint32_t eval(int p, int q, bool *success, int *format) {
 	}
 
 	int index = dominant_operator(p, q);
-	 printf ("index == %d\n", index);
+	// printf ("index == %d\n", index);
 	//printf ("p == %d  ", p);
 	//printf ("q == %d  ", q);
 	int op = tokens[index].type;
