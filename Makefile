@@ -53,7 +53,7 @@ clean: clean-cpp
 
 ##### some convinient integralrules #####
 
-USERPROG := obj/testcase/add
+USERPROG := obj/testcase/mov-c
 ENTRY := $(kernel_BIN)
 
 entry: $(ENTRY)
