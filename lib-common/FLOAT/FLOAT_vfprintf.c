@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <sys/mman.h>
 #include "FLOAT.h"
 
 extern char _vfprintf_internal;
@@ -15,8 +16,39 @@ __attribute__((used)) static int format_FLOAT(FILE *stream, FLOAT f) {
 	 *         0x00013333    "1.199996"
 	 */
 
+	//char buf[80];
+	//int len = sprintf(buf, "0x%08x", f);
+	//return __stdio_fwrite(buf, len, stream);
+
 	char buf[80];
-	int len = sprintf(buf, "0x%08x", f);
+	int neg = ((f >> 31) & 0x1);
+	// make f pos
+	if (neg) {
+		f = (~f) + 1;
+	}
+
+
+	int fraction = 0;
+	int base=100000000;
+	int i;
+	int len = 0;
+	for (i = 15; i >= 0;i--){
+		base >>= 1;
+		if (f&(1<<i)){
+			fraction += base;
+		}
+	}
+
+	int num = f >> 16;
+	while (fraction > 999999) {
+		fraction /= 10;
+	}
+	if (neg){ // neg
+		len = sprintf(buf,"-%d.%06d",num,fraction);
+	}
+	else {  // pos
+		len = sprintf(buf,"%d.%06d",num,fraction);
+	}
 	return __stdio_fwrite(buf, len, stream);
 }
 
@@ -26,6 +58,37 @@ static void modify_vfprintf() {
 	 * is the code section in _vfprintf_internal() relative to the
 	 * hijack.
 	 */
+	int func_addr = (int)(&_vfprintf_internal);
+	// get the right to execute the code
+	mprotect((void*)((func_addr + 0x306 - 100) & 0xfffff000), 4096*2, PROT_READ|PROT_WRITE|PROT_EXEC);
+
+	// abs(0x0804855f(call)-0x8048865(function)) = 0x306
+	
+	char *modify = (char*)(func_addr + 0x306 - 0xa);
+	int add_off_addr = func_addr+0x306;
+	*modify = 0xff;//push m32
+	modify = (char*)(add_off_addr - 0x9);
+	*modify = 0x32;//ModR/M: 00 110 010
+	modify = (char*)(add_off_addr - 0x8);
+	*modify = 0x90;//nop
+
+	modify = (char*)(add_off_addr - 0xb);
+	*modify = 0x08;//sub 0x8,%esp
+
+	modify = (char*)(add_off_addr - 0x22);
+	*modify = 0x90;//fldt -> nop
+
+	modify = (char*)(add_off_addr - 0x21);
+	*modify = 0x90;//fldt -> nop
+
+	modify = (char*)(add_off_addr - 0x1e);
+	*modify = 0x90;//fldl -> nop
+
+	modify = (char*)(add_off_addr - 0x1d);
+	*modify = 0x90;//fldl -> nop
+
+	int *jmp_pos = (int*)(add_off_addr + 1);
+	*jmp_pos += (int)format_FLOAT-(int)(&_fpmaxtostr);
 
 #if 0
 	else if (ppfs->conv_num <= CONV_A) {  /* floating point */
@@ -66,13 +129,21 @@ static void modify_vfprintf() {
 
 }
 
+
+extern char _ppfs_setargs;
 static void modify_ppfs_setargs() {
 	/* TODO: Implement this function to modify the action of preparing
 	 * "%f" arguments for _vfprintf_internal() in _ppfs_setargs().
 	 * Below is the code section in _vfprintf_internal() relative to
 	 * the modification.
 	 */
-
+	int func_addr = (int)(&_ppfs_setargs);
+	char *modify = (char*)(func_addr + 0x71);
+	*modify = 0xeb;
+	modify = (char*)(func_addr + 0x72);
+	*modify = 0x30;
+	modify = (char*)(func_addr + 0x73);
+	*modify = 0x90;
 #if 0
 	enum {                          /* C type: */
 		PA_INT,                       /* int */
