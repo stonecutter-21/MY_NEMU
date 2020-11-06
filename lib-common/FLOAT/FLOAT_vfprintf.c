@@ -60,6 +60,8 @@ static void modify_vfprintf() {
 	 */
 	int func_addr = (int)(&_vfprintf_internal);
 	// get the right to execute the code
+
+	// just used for check the correctness of some steps:
 	// mprotect((void*)((func_addr + 0x306 - 100) & 0xfffff000), 4096*2, PROT_READ|PROT_WRITE|PROT_EXEC);
 
 	// abs(0x0804855f(call)-0x8048865(function)) = 0x306
